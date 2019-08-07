@@ -320,5 +320,18 @@ func (u *RestController) Getbydist(c *gin.Context) {
 }
 
 
+func (u *RestController) ListRest (c *gin.Context) {
+	id,name,err := u.RestList()
+	if err != nil {
+		panic("Error getting list from db: "+err.Error())
+	}
+	o := make(map[int]string)
+	for i,v := range id {
+		o[v] = name[i]
+	}
+	encodeJson(c,o)
+}
+
+
 
 

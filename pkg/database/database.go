@@ -23,4 +23,5 @@ type Database interface {
 	GetMenu				(rid int,menu string)												(map[string]int,error)
 	GetbyDistance 		(Lat float64, Long float64,dist float64)							[]string
 	UserList			()																	([]string,[]string,error)
+	RestList			() 																	([]int,[]string,error)
 }

@@ -62,6 +62,7 @@ func (r *Router) Router() *gin.Engine {
 	restGroup.PUT("/update",middleware.TokenValidator,middleware.AdminRankAuthenticator,restcontroller.RestUpdate)
 	restGroup.GET("/menu",middleware.TokenValidator,restcontroller.MenuGet)
 	restGroup.GET("/dist",restcontroller.Getbydist)
+	restGroup.GET("/list",middleware.TokenValidator,restcontroller.ListRest)
 
 	dishGroup := restGroup.Group("/dish")
 	dishGroup.POST("/create",middleware.TokenValidator,restcontroller.AddDish)

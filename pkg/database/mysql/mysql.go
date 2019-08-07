@@ -94,6 +94,7 @@ func (db *MysqlDB) UserList() ([]string,[]string,error) {
 		names[] string
 		emails[]string
 	)
+	defer row.Close()
 	if err != nil {
 		return []string{},[]string{},err
 	}
@@ -365,4 +366,27 @@ func (db *MysqlDB) GetbyDistance (Lat float64, Long float64,dist float64) []stri
 	}
 	return names
 
+}
+
+func (db *MysqlDB) RestList() ([]int,[]string,error){
+
+	row,err := db.Query("SELECT id,name from rest")
+	if err != nil {
+		return []int{},[]string{},err
+	}
+	var (
+		name string
+		id int
+		names []string
+		ids []int
+	)
+	for row.Next(){
+		err = row.Scan(&id,&name)
+		if err != nil {
+			return []int{},[]string{},err
+		}
+		names = append(names, name)
+		ids = append(ids,id)
+	}
+	return ids,names,err
 }
