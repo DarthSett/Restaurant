@@ -43,23 +43,25 @@ func (db *MysqlDB) CreateUser(u *models.User) error{
 
 
 //GetUser fetches the data of a user from db
-func(db *MysqlDB) GetUser(Email string) (*models.User,error){
-	row,err := db.Query("select * from user where email = ?",Email)
-	if err != nil{
-		return &models.User{},err
+func(db *MysqlDB) GetUser(Email string) (*models.User,error) {
+	row, err := db.Query("select * from user where email = ?", Email)
+	if err != nil {
+		return &models.User{}, err
 	}
 	defer row.Close()
 	var (
-		name string
-		pass string
+		name  string
+		pass  string
 		email string
 		adder string
 	)
-	row.Next()
-	err = row.Scan(&name, &pass, &email, &adder)
-	if err != nil {
-		return &models.User{},err
+	for row.Next() {
+		err = row.Scan(&name, &pass, &email, &adder)
+		if err != nil {
+			return &models.User{},err
+		}
 	}
+
 	if email == "" {
 		err = fmt.Errorf("no such record in database")
 		return &models.User{},err
@@ -82,6 +84,29 @@ func (db *MysqlDB) DeleteUser(email string, adder string) error{
 	return err
 }
 
+
+//
+func (db *MysqlDB) UserList() ([]string,[]string,error) {
+	row,err := db.Query("select name, email from user")
+	var (
+		name 	string
+		email 	string
+		names[] string
+		emails[]string
+	)
+	if err != nil {
+		return []string{},[]string{},err
+	}
+	for row.Next() {
+		err = row.Scan(&name,&email)
+		if err != nil {
+			return []string{},[]string{},err
+		}
+		names = append(names, name)
+		emails = append(emails, email)
+	}
+	return names,emails,nil
+}
 
 
 //Admin Functions

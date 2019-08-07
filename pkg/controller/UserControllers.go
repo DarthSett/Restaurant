@@ -81,13 +81,6 @@ func (u *UserController) UserDel(c *gin.Context){
 			panic("Error getting user from db: "+ err.Error())
 		}
 	}
-	if rank == 1 {
-		adder := fmt.Sprintf("%v",claims["email"])
-		err = u.DeleteUser(Email,adder)
-		if err != nil {
-			panic("Error getting user from db: "+ err.Error())
-		}
-	}
 	c.Writer.Write([]byte(Email + " Deleted from db"))
 }
 
@@ -116,6 +109,19 @@ func (u *UserController) UserLogin(c *gin.Context)  {
 		c.Writer.Write([]byte("User logged in. Token generated"))
 	}
 
+}
+
+func (u *UserController) ListUser (c *gin.Context) {
+		name,email,err := u.UserList()
+		if err != nil {
+			panic("There was an error getting the list from db: "+err.Error())
+		}
+		o := make(map[string]string)
+		for i,v := range name {
+			println(v)
+			o[v] = email[i]
+		}
+		encodeJson(c,o)
 }
 
 

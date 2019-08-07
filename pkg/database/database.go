@@ -22,4 +22,5 @@ type Database interface {
 	GetSuperAdmin		(email string)														(*models.User,error)
 	GetMenu				(rid int,menu string)												(map[string]int,error)
 	GetbyDistance 		(Lat float64, Long float64,dist float64)							[]string
+	UserList			()																	([]string,[]string,error)
 }

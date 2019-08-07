@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e5c68017-4e63-4bc7-9d16-c251d9e34bf6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/controller/UserControllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/UserControllers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/database/database.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/database/mysql/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/database/mysql/mysql.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/server/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/router.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +96,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

@@ -30,10 +30,11 @@ func (r *Router) Router() *gin.Engine {
 
 
 	userGroup := defaultRouter.Group("user")
-	userGroup.POST("/create",middleware.TokenValidator,middleware.AdminRankAuthenticator, userController.Usermake)
+	userGroup.POST("/create",middleware.TokenValidator,middleware.SuperAdminRankAuthenticator, userController.Usermake)
 	userGroup.GET ("/get",middleware.TokenValidator,userController.Userget)
-	userGroup.DELETE("/del",middleware.TokenValidator,middleware.AdminRankAuthenticator, userController.UserDel)
+	userGroup.DELETE("/del",middleware.TokenValidator,middleware.SuperAdminRankAuthenticator, userController.UserDel)
 	userGroup.POST("/login",userController.UserLogin)
+	userGroup.GET("/list",middleware.TokenValidator,middleware.AdminRankAuthenticator,userController.ListUser)
 
 
 
