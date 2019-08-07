@@ -21,7 +21,7 @@ func AdminRankAuthenticator(c *gin.Context) {
 	}
 	rank,_ := strconv.Atoi(fmt.Sprintf("%v",claims["rank"]))
 	//	claims := token.Claims.(jwt.MapClaims)
-
+	c.Set("rank", rank)
 	if rank == 1 || rank == 2{
 		c.Next()
 	} else {

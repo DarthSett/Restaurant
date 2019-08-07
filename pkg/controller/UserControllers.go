@@ -29,7 +29,11 @@ func (u *UserController) Usermake(c *gin.Context){
 	//pass := c.PostForm("pass")
 	//email := c.PostForm("email")
 	//println(email)
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	claims,err := GetTokenClaims(c.GetHeader("token"))
 	if err != nil {
 		panic("Error getting claims from token: " + err.Error())
@@ -53,19 +57,27 @@ func (u *UserController) Usermake(c *gin.Context){
 
 func (u *UserController) Userget(c *gin.Context){
 	//email := c.PostForm("email")
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	user,err := u.GetUser(input["email"])
 	if err != nil {
 		panic("Error getting user from db: " + err.Error())
 	}
 	user.Pass = ""
 	//c.Writer.Write([]byte("Name: " + user.Name + "\nPass: " + user.Pass + "\nEmail: " + user.Email))
-	encodeJson(c,user)
+	c.JSON(200,user)
 }
 
 func (u *UserController) UserDel(c *gin.Context){
 	//Email := c.PostForm("email")
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	Email := input["email"]
 	claims,err := GetTokenClaims(c.GetHeader("token"))
 	if err != nil {
@@ -87,7 +99,11 @@ func (u *UserController) UserDel(c *gin.Context){
 func (u *UserController) UserLogin(c *gin.Context)  {
 	//email := c.PostForm("email")
 	//pass := c.PostForm("pass")
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	user,err := u.GetUser(input["email"])
 	if err != nil {
 		panic("Error getting user from db: " + err.Error())
@@ -121,7 +137,7 @@ func (u *UserController) ListUser (c *gin.Context) {
 			println(v)
 			o[v] = email[i]
 		}
-		encodeJson(c,o)
+		c.JSON(200, o)
 }
 
 

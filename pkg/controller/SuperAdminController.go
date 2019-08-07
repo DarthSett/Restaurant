@@ -20,7 +20,11 @@ func NewSuperAdminController(db database.Database) *SuperAdminController {
 
 
 func (u *SuperAdminController) SuperAdminmake(c *gin.Context){
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	//
 	//name := c.PostForm("name")
 	//pass := c.PostForm("pass")
@@ -41,13 +45,17 @@ func (u *SuperAdminController) SuperAdminmake(c *gin.Context){
 
 func (u *SuperAdminController) SuperAdminget(c *gin.Context){
 	//email := c.PostForm("email")
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	SuperAdmin,err := u.GetSuperAdmin(input["email"])
 	if err != nil {
 		panic("Error getting SuperAdmin from db: "+ err.Error())
 	}
 	SuperAdmin.Pass = ""
-	encodeJson(c,SuperAdmin)
+	c.JSON(200,SuperAdmin)
 	//c.Writer.Write([]byte("Name: " + SuperAdmin.Name + "\nPass: " + SuperAdmin.Pass + "\nEmail: " + SuperAdmin.Email))
 }
 
@@ -65,7 +73,11 @@ func (u *SuperAdminController) SuperAdminDel(c *gin.Context){
 }
 
 func (u *SuperAdminController) SuperAdminLogin(c *gin.Context)  {
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	sa,err := u.GetSuperAdmin(input["email"])
 	if err != nil {
 		panic("Error getting user from db: " + err.Error())

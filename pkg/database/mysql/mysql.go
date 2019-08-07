@@ -85,7 +85,7 @@ func (db *MysqlDB) DeleteUser(email string, adder string) error{
 }
 
 
-//
+//UserList fetches the list of all users
 func (db *MysqlDB) UserList() ([]string,[]string,error) {
 	row,err := db.Query("select name, email from user")
 	var (
@@ -340,6 +340,8 @@ func (db *MysqlDB) GetMenu (rid int,menu string) (map[string]int,error) {
 	return Menu,nil
 }
 
+
+//getbyDistance fetches the list of all restaurants in a certain radius from a point
 func (db *MysqlDB) GetbyDistance (Lat float64, Long float64,dist float64) []string{
 	q := fmt.Sprintf("SELECT name,latitude,longitude FROM rest")
 	rows,err := db.Query(q)
@@ -368,6 +370,8 @@ func (db *MysqlDB) GetbyDistance (Lat float64, Long float64,dist float64) []stri
 
 }
 
+
+//RestList fetches the List of all restaurants
 func (db *MysqlDB) RestList() ([]int,[]string,error){
 
 	row,err := db.Query("SELECT id,name from rest")

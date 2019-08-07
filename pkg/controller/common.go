@@ -1,10 +1,8 @@
 package controller
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
-	"github.com/gin-gonic/gin"
 	"github.com/restaurant/pkg/models"
 	"time"
 )
@@ -35,23 +33,3 @@ func GetTokenClaims (t string) (jwt.MapClaims, error) {
 	return token.Claims.(jwt.MapClaims),err
 }
 
-func decodeJson (c *gin.Context) map[string]string {
-	decoder := json.NewDecoder(c.Request.Body)
-
-	var input map[string]string
-	err := decoder.Decode(&input)
-
-	if err != nil {
-		panic("error decoding json: "+err.Error())
-	}
-	return input
-}
-
-func encodeJson (c *gin.Context,data interface{}) {
-	c.Header("Content-Type", "application/json")
-
-	err := json.NewEncoder(c.Writer).Encode(data)
-	if err != nil {
-		panic("error encoding to json: " + err.Error())
-	}
-}

@@ -28,7 +28,11 @@ func (u *RestController) RestMake(c *gin.Context){
 	//lat := c.PostForm("lat")
 	//long := c.PostForm("long")
 	//owner := c.PostForm("owner")
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	claims,err := GetTokenClaims(c.GetHeader("token"))
 	if err != nil {
 		panic("Error getting claims from token: " + err.Error())
@@ -45,7 +49,11 @@ func (u *RestController) RestMake(c *gin.Context){
 
 func (u *RestController) Restget(c *gin.Context){
 	//name := c.PostForm("name")
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("error getting inputs: " + err.Error())
+	}
 	rid,err := strconv.Atoi(input["rid"])
 	if err != nil {
 		panic("Error getting rid from input: " + err.Error())
@@ -56,13 +64,17 @@ func (u *RestController) Restget(c *gin.Context){
 	}
 	//lat,long := rest.GetLoc()
 	//loc := fmt.Sprintf("(%v,%v)",lat,long)
-	encodeJson(c,rest)
+	c.JSON(200,rest)
 	//c.Writer.Write([]byte("Name: " + rest.Name + "\nLoc: " + loc + "\nAdder: " + rest.GetAdder() + "\nOwner" + rest.GetOwner() ))
 }
 
 func (u *RestController) RestDel(c *gin.Context){
 	//name := c.PostForm("name")
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	rid,err := strconv.Atoi(input["rid"])
 	if err != nil {
 		panic("Error getting rid from input: " + err.Error())
@@ -86,7 +98,11 @@ func (u *RestController) RestDel(c *gin.Context){
 func (u *RestController) RestUpdate(c *gin.Context){
 	//name := c.PostForm("name")
 	//f := c.PostForm("flag")
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	rid,err := strconv.Atoi(input["rid"])
 	if err != nil {
 		panic("Error getting rid from input: " + err.Error())
@@ -136,7 +152,11 @@ func (u *RestController) AddDish(c *gin.Context) {
 	//dishName := c.PostForm("dish")
 	//menu := c.PostForm("menu")
 	//p := c.PostForm("price")
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	claims,err := GetTokenClaims(c.GetHeader("token"))
 	if err != nil {
 		panic("Error getting claims from token: " + err.Error())
@@ -182,7 +202,11 @@ func (u *RestController) AddDish(c *gin.Context) {
 }
 
 func (u *RestController) DelDish(c *gin.Context) {
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	rid,err := strconv.Atoi(input["rid"])
 	if err != nil {
 		panic("Error getting rid from input: " + err.Error())
@@ -232,7 +256,11 @@ func (u *RestController) DelDish(c *gin.Context) {
 
 
 func (u *RestController) UpdDish(c *gin.Context) {
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	rid,err := strconv.Atoi(input["rid"])
 	if err != nil {
 		panic("Error getting rid from input: " + err.Error())
@@ -284,7 +312,11 @@ func (u *RestController) UpdDish(c *gin.Context) {
 }
 
 func (u *RestController) MenuGet(c *gin.Context) {
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	rid,err := strconv.Atoi(input["rid"])
 	if err != nil {
 		panic("Error getting rid from input: " + err.Error())
@@ -294,14 +326,18 @@ func (u *RestController) MenuGet(c *gin.Context) {
 	if err != nil {
 		panic("Error getting menu from db: " + err.Error())
 	}
-	encodeJson(c,menu)
+	c.JSON(200,menu)
 
 
 }
 
 func (u *RestController) Getbydist(c *gin.Context) {
 
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	lat,err := strconv.ParseFloat(input["lat"],64)
 	if err != nil {
 		panic(err)
@@ -315,7 +351,7 @@ func (u *RestController) Getbydist(c *gin.Context) {
 		panic(err)
 	}
 	names := u.GetbyDistance(lat,long,dist)
-	encodeJson(c,names)
+	c.JSON(200,names)
 
 }
 
@@ -329,8 +365,29 @@ func (u *RestController) ListRest (c *gin.Context) {
 	for i,v := range id {
 		o[v] = name[i]
 	}
-	encodeJson(c,o)
+	c.JSON(200,o)
 }
+
+//MySQL relational
+//A<->B
+//
+//id int-autoincrement
+//status - 1/0
+//created - time
+//updated - time
+//deleted - time
+//
+//Resturant
+//id, name, lat, lng, owner, added_by, created, status
+//
+//Owner
+//id, name, email, password, created_by, status, role
+//
+//Menu/dish
+//id, name, price, resurant_id, status, created, created_by, role
+//
+
+
 
 
 

@@ -21,7 +21,11 @@ func NewAdminController(db database.Database) *AdminController {
 
 func (u *AdminController) Adminmake(c *gin.Context){
 
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 
 	claims,err := GetTokenClaims(c.GetHeader("token"))
 	if err != nil {
@@ -50,21 +54,29 @@ func (u *AdminController) Adminmake(c *gin.Context){
 
 func (u *AdminController) Adminget(c *gin.Context){
 	//email := c.PostForm("email")
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	println(input["email"])
 	Admin,err := u.GetAdmin(input["email"])
 	if err != nil {
 		panic("Error getting Admin from db: "+ err.Error())
 	}
 	Admin.Pass = ""
-	encodeJson(c,Admin)
+	c.JSON(200,Admin)
 
 	//c.Writer.Write([]byte("Name: " + Admin.Name + "\nPass: " + Admin.Pass + "\nEmail: " + Admin.Email + "\n Rank: " + strconv.Itoa(Admin.Rank)))
 }
 
 func (u *AdminController) AdminDel(c *gin.Context){
-	input := decodeJson(c)
-	err := u.DeleteAdmin(input["email"])
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
+	err = u.DeleteAdmin(input["email"])
 	if err != nil {
 		panic("Error getting Admin from db: "+ err.Error())
 	}
@@ -74,7 +86,11 @@ func (u *AdminController) AdminDel(c *gin.Context){
 func (u *AdminController) AdminLogin(c *gin.Context)  {
 	//email := c.PostForm("email")
 	//pass := c.PostForm("pass")
-	input := decodeJson(c)
+	input := make(map[string]string)
+	err := c.BindJSON(&input)
+	if err != nil {
+		panic("Error getting inputs: " + err.Error())
+	}
 	admin,err := u.GetAdmin(input["email"])
 	if err != nil {
 		panic("Error getting user from db: " + err.Error())
