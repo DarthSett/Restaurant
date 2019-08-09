@@ -8,8 +8,14 @@
       <change beforePath="$PROJECT_DIR$/pkg/controller/SuperAdminController.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/SuperAdminController.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/controller/UserControllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/UserControllers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/controller/common.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/common.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/database/database.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/database/mysql/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/database/mysql/mysql.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/middleware/RankAuthenticator.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/middleware/RankAuthenticator.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/middleware/TokenValidator.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/middleware/TokenValidator.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/models/dishes.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/models/dishes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/models/restaurant.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/models/restaurant.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/models/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/server/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/router.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,5 +115,16 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/pkg/controller/AdminController.go</url>
+          <line>3</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

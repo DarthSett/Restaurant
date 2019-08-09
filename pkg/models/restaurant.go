@@ -5,11 +5,12 @@ type Restaurant struct {
 	Lat		string
 	Long	string
 	Owner	string
-	AddedBy	string
+	AddedBy	int
 	ID		int
+	AdderRole int
 }
 
-func NewRestaurant(name string, lat string, long string, owner string, adder string,id int) *Restaurant {
+func NewRestaurant(name string, lat string, long string, owner string, adder int,id int,adderrole int) *Restaurant {
 	return &Restaurant{
 		Name:    name,
 		Lat:     lat,
@@ -17,12 +18,13 @@ func NewRestaurant(name string, lat string, long string, owner string, adder str
 		Owner:   owner,
 		AddedBy: adder,
 		ID:		 id,
+		AdderRole: adderrole,
 	}
 }
 
-func AddRestaurant(name string, lat string, long string, owner string, adder string) *Restaurant {
+func AddRestaurant(name string, lat string, long string, owner string, adder int,adderrole int) *Restaurant {
 
-	return NewRestaurant(name,lat,long,owner,adder,0)
+	return NewRestaurant(name,lat,long,owner,adder,0,adderrole)
 }
 
 
@@ -31,8 +33,12 @@ func (r *Restaurant) GetOwner() string {
 	return r.Owner
 }
 
-func (r *Restaurant) GetAdder() string {
+func (r *Restaurant) GetAdder() int {
 	return r.AddedBy
+}
+
+func (r *Restaurant) GetAdderRole() int {
+	return r.AdderRole
 }
 
 //func (r *Restaurant) ChangeLoc(lat string, long string) {

@@ -3,6 +3,7 @@ package controller
 import (
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
 	"github.com/restaurant/pkg/models"
 	"time"
 )
@@ -13,6 +14,7 @@ func generateToken (user *models.User) (string,error) {
 	claims["email"] = user.Email
 	claims["name"] = user.Name
 	claims["rank"] = user.Rank
+	claims["id"] = user.Id
 	claims["exp"] = time.Now().Add(30 * time.Minute).Unix()
 
 	t,err := token.SignedString([]byte("SecretKey"))
@@ -32,4 +34,15 @@ func GetTokenClaims (t string) (jwt.MapClaims, error) {
 	})
 	return token.Claims.(jwt.MapClaims),err
 }
+
+func (u *UserController) Logout(c *gin.Context) {
+
+	err := u.LogoutUser(c.GetHeader("token"))
+	if err != nil {
+		panic("error logging out" + err.Error())
+	}
+	c.Writer.Write([]byte("User Logged Out"))
+}
+
+
 

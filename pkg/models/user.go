@@ -5,10 +5,12 @@ type User struct {
 	Email string
 	Pass string
 	Rank int
-	Adder string
+	Adder int
+	AdderRole int
+	Id		int
 }
 
-func NewUser (name string, email string, pass string, rank int, adder string) *User {
+func NewUser (name string, email string, pass string, rank int, adder int,adderRole int,id int) *User {
 
 	return &User{
 		Name: name,
@@ -16,6 +18,8 @@ func NewUser (name string, email string, pass string, rank int, adder string) *U
 		Pass:  pass,
 		Rank:  rank,
 		Adder: adder,
+		AdderRole:adderRole,
+		Id : id,
 	}
 }
 

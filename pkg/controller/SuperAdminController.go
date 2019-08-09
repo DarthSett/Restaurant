@@ -2,10 +2,12 @@ package controller
 
 import (
 	"fmt"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/restaurant/pkg/database"
 	"github.com/restaurant/pkg/models"
 	"golang.org/x/crypto/bcrypt"
+	"strconv"
 )
 
 type SuperAdminController struct{
@@ -29,11 +31,19 @@ func (u *SuperAdminController) SuperAdminmake(c *gin.Context){
 	//name := c.PostForm("name")
 	//pass := c.PostForm("pass")
 	//email := c.PostForm("email")
+
+
+	if input["email"] == "" {panic("no email sent")}
+	if input["pass"] == "" {panic("no pass sent")}
+	if input["name"] == "" {panic("no name sent")}
+
+
+
 	hash,err := bcrypt.GenerateFromPassword([]byte(input["pass"]),4)
 	if err != nil {
 		panic("Error encrypting password: " + err.Error())
 	}
-	SuperAdmin := models.NewUser(input["name"],input["email"],string(hash),2,"")
+	SuperAdmin := models.NewUser(input["name"],input["email"],string(hash),2,0,0,0)
 	println(SuperAdmin.Name, SuperAdmin.Pass)
 	err = u.CreateSuperAdmin(SuperAdmin)
 	if err != nil {
@@ -50,7 +60,14 @@ func (u *SuperAdminController) SuperAdminget(c *gin.Context){
 	if err != nil {
 		panic("Error getting inputs: " + err.Error())
 	}
-	SuperAdmin,err := u.GetSuperAdmin(input["email"])
+
+	if input["id"] == "" {panic("no id sent")}
+
+	id,err := strconv.Atoi(fmt.Sprintf("%v",input["id"]))
+	if err != nil {
+		panic("Error getting id from input: "+ err.Error())
+	}
+	SuperAdmin,err := u.GetSuperAdmin("",id)
 	if err != nil {
 		panic("Error getting SuperAdmin from db: "+ err.Error())
 	}
@@ -60,16 +77,17 @@ func (u *SuperAdminController) SuperAdminget(c *gin.Context){
 }
 
 func (u *SuperAdminController) SuperAdminDel(c *gin.Context){
-	claims,err := GetTokenClaims(c.GetHeader("token"))
+	clms,_ := c.Get("claims")
+	claims := clms.(jwt.MapClaims)
+	id,err := strconv.Atoi(fmt.Sprintf("%v",claims["id"]))
 	if err != nil {
-		panic("Error getting claims from token: " + err.Error())
+		panic("Error getting id from input: "+ err.Error())
 	}
-	email := fmt.Sprintf("%v",claims["email"])
-	err = u.DeleteSuperAdmin(email)
+	err = u.DeleteSuperAdmin(id)
 	if err != nil {
 		panic("Error getting SuperAdmin from db: "+ err.Error())
 	}
-	c.Writer.Write([]byte(email + " Deleted from db"))
+	c.Writer.Write([]byte(string(id) + " Deleted from db"))
 }
 
 func (u *SuperAdminController) SuperAdminLogin(c *gin.Context)  {
@@ -78,11 +96,16 @@ func (u *SuperAdminController) SuperAdminLogin(c *gin.Context)  {
 	if err != nil {
 		panic("Error getting inputs: " + err.Error())
 	}
-	sa,err := u.GetSuperAdmin(input["email"])
+
+	if input["email"] == "" {panic("no email sent")}
+	if input["pass"] == "" {panic("no pass sent")}
+
+
+	sa,err := u.GetSuperAdmin(input["email"],0)
 	if err != nil {
 		panic("Error getting user from db: " + err.Error())
 	}
-	println(sa.Pass)
+	println("id: ",sa.Id)
 	println(input["pass"])
 
 	err = bcrypt.CompareHashAndPassword([]byte(sa.Pass),[]byte(input["pass"]))

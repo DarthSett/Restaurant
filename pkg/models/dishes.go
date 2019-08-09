@@ -4,17 +4,19 @@ type Dish struct {
 	Name		string
 	Price		int
 	Rid			int
-	Menu 		string
 	id			int
+	Adder		int
+	AdderRole	int
 }
 
-func  NewDish(name string, price int, rid int, menu string, id int) *Dish  {
+func  NewDish(name string, price int, rid int, id int, adder int, adderRole int) *Dish  {
 	return &Dish{
 		Name:       name,
 		Price:      price,
 		Rid: 		rid,
-		Menu:		menu,
 		id :        id,
+		Adder:      adder,
+		AdderRole:	adderRole,
 	}
 }
 
