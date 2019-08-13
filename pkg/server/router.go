@@ -32,7 +32,7 @@ func (r *Router) Router() *gin.Engine {
 
 	userGroup := defaultRouter.Group("user")
 	userGroup.POST("/create",midController.TokenValidator,middleware.AdminRankAuthenticator, userController.Usermake)
-	userGroup.GET ("/get",midController.TokenValidator,userController.Userget)
+	userGroup.GET ("/get",midController.TokenValidator,middleware.AdminRankAuthenticator,userController.Userget)
 	userGroup.DELETE("/del",midController.TokenValidator,middleware.SuperAdminRankAuthenticator, userController.UserDel)
 	userGroup.POST("/login",userController.UserLogin)
 	userGroup.GET("/list",midController.TokenValidator,middleware.AdminRankAuthenticator,userController.ListUser)
@@ -45,14 +45,14 @@ func (r *Router) Router() *gin.Engine {
 
 	adminGroup := defaultRouter.Group("admin")
 	adminGroup.POST("/create",midController.TokenValidator,middleware.SuperAdminRankAuthenticator, adminController.Adminmake)
-	adminGroup.GET ("/get",midController.TokenValidator,adminController.Adminget)
+	adminGroup.GET ("/get",midController.TokenValidator,middleware.AdminRankAuthenticator,adminController.Adminget)
 	adminGroup.DELETE("/del",midController.TokenValidator,middleware.SuperAdminRankAuthenticator, adminController.AdminDel)
 	adminGroup.POST("/login",adminController.AdminLogin)
 	adminGroup.PUT("/update",midController.TokenValidator,middleware.SuperAdminRankAuthenticator,adminController.AdminUpdate)
 
 	superadminGroup := defaultRouter.Group("superadmin")
 	superadminGroup.POST("/create",midController.TokenValidator,middleware.SuperAdminRankAuthenticator, superadminController.SuperAdminmake)
-	superadminGroup.GET ("/get",midController.TokenValidator, superadminController.SuperAdminget)
+	superadminGroup.GET ("/get",midController.TokenValidator,middleware.SuperAdminRankAuthenticator, superadminController.SuperAdminget)
 	superadminGroup.DELETE("/del",midController.TokenValidator,middleware.SuperAdminRankAuthenticator, superadminController.SuperAdminDel)
 	superadminGroup.POST("/login",superadminController.SuperAdminLogin)
 

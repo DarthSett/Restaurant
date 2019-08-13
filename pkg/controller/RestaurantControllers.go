@@ -434,6 +434,7 @@ func (u *RestController) Getbydist(c *gin.Context) {
 		o[i].Name = names[i]
 		o[i].Id = id[i]
 	}
+	println(o[0].Name)
 	c.JSON(200,o)
 
 }

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e5c68017-4e63-4bc7-9d16-c251d9e34bf6" name="Default Changelist" comment="" />
+    <list default="true" id="e5c68017-4e63-4bc7-9d16-c251d9e34bf6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/controller/RestaurantControllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/RestaurantControllers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/database/database_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/database/database_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/server/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/router.go" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +58,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Test.TestLogout/It_returns_200_on_logout in github.com/restaurant/pkg/database">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="restaurant" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -60,12 +66,49 @@
       <kind value="FILE" />
       <method v="2" />
     </configuration>
-    <configuration name="go build github.com/restaurant/cmd" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="TestDish/It_return_200_on_creating_a_dish in github.com/restaurant/pkg/database" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="restaurant" />
-      <working_directory value="$PROJECT_DIR$" />
+      <working_directory value="$PROJECT_DIR$/pkg/database" />
+      <framework value="gotest" />
       <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/cmd/main.go" />
-      <package value="github.com/restaurant/cmd" />
+      <package value="github.com/restaurant/pkg/database" />
+      <pattern value="^TestDish$/^It_return_200_on_creating_a_dish$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestDish/It_return_200_on_creating_a_dish#01 in github.com/restaurant/pkg/database" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="restaurant" />
+      <working_directory value="$PROJECT_DIR$/pkg/database" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/restaurant/pkg/database" />
+      <pattern value="^TestDish$/^It_return_200_on_creating_a_dish#01$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestDish/It_return_200_on_updating_a_dish in github.com/restaurant/pkg/database" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="restaurant" />
+      <working_directory value="$PROJECT_DIR$/pkg/database" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/restaurant/pkg/database" />
+      <pattern value="^TestDish$/^It_return_200_on_updating_a_dish$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestLogout/It_returns_200_on_logout in github.com/restaurant/pkg/database" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="restaurant" />
+      <working_directory value="$PROJECT_DIR$/pkg/database" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/restaurant/pkg/database" />
+      <pattern value="^TestLogout$/^It_returns_200_on_logout$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestRest/It_return_200_on_getting_menu in github.com/restaurant/pkg/database" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="restaurant" />
+      <working_directory value="$PROJECT_DIR$/pkg/database" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/restaurant/pkg/database" />
+      <pattern value="^TestRest$/^It_return_200_on_getting_menu$" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
@@ -78,7 +121,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build github.com/restaurant/cmd" />
+        <item itemvalue="Go Test.TestLogout/It_returns_200_on_logout in github.com/restaurant/pkg/database" />
+        <item itemvalue="Go Test.TestRest/It_return_200_on_getting_menu in github.com/restaurant/pkg/database" />
+        <item itemvalue="Go Test.TestDish/It_return_200_on_creating_a_dish#01 in github.com/restaurant/pkg/database" />
+        <item itemvalue="Go Test.TestDish/It_return_200_on_updating_a_dish in github.com/restaurant/pkg/database" />
+        <item itemvalue="Go Test.TestDish/It_return_200_on_creating_a_dish in github.com/restaurant/pkg/database" />
       </list>
     </recent_temporary>
   </component>
