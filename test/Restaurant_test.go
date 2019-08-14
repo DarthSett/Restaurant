@@ -1,4 +1,4 @@
-package database_test
+package test_test
 
 import (
 	"bytes"
@@ -68,9 +68,9 @@ func TestCreate(t *testing.T) {
 	token := response.Header().Get("token")
 	t.Run("it returns 200 on creating a user", func(t *testing.T) {
 		userdata := create{
-			Name:  "user1",
+			Name:  "user2",
 			Pass:  "zamorak",
-			Email: "user1@gmail.com",
+			Email: "user2@gmail.com",
 		}
 		user,_ := json.Marshal(userdata)
 		request,_ := http.NewRequest(http.MethodPost, "/user/create",bytes.NewReader(user))
@@ -79,12 +79,13 @@ func TestCreate(t *testing.T) {
 		response = httptest.NewRecorder()
 		s.ServeHTTP(response,request)
 		assertEqual(t,200,response.Code,"")
+		resetDBafterCreate(db)
 	})
 	t.Run("it returns 200 on creating an admin", func(t *testing.T) {
 		userdata := create{
-			Name:  "admin1",
+			Name:  "admin2",
 			Pass:  "zamorak",
-			Email: "admin1@gmail.com",
+			Email: "admin2@gmail.com",
 		}
 		admin,_ := json.Marshal(userdata)
 		request,_ := http.NewRequest(http.MethodPost, "/admin/create",bytes.NewReader(admin))
@@ -93,6 +94,7 @@ func TestCreate(t *testing.T) {
 		response = httptest.NewRecorder()
 		s.ServeHTTP(response,request)
 		assertEqual(t,200,response.Code,"")
+		resetDBafterCreate(db)
 	})
 	t.Run("it returns 200 on creating a superadmin", func(t *testing.T) {
 		userdata := create{
@@ -107,7 +109,9 @@ func TestCreate(t *testing.T) {
 		response = httptest.NewRecorder()
 		s.ServeHTTP(response,request)
 		assertEqual(t,200,response.Code,"")
+		resetDBafterCreate(db)
 	})
+
 }
 
 func TestList(t *testing.T) {
@@ -157,7 +161,7 @@ func TestGet(t *testing.T) {
 	s.ServeHTTP(response,request)
 	token := response.Header().Get("token")
 	t.Run("it returns 200 on getting a user", func(t *testing.T) {
-		userget := get{"25"}
+		userget := get{"1"}
 		user,_ := json.Marshal(userget)
 		request,_ := http.NewRequest(http.MethodGet, "/user/get",bytes.NewReader(user))
 		request.Header.Set("token",token)
@@ -167,9 +171,19 @@ func TestGet(t *testing.T) {
 		assertEqual(t,200,response.Code,"")
 	})
 	t.Run("it returns 200 on getting an admin", func(t *testing.T) {
-		userget := get{"7"}
+		userget := get{"1"}
 		admin,_ := json.Marshal(userget)
 		request,_ := http.NewRequest(http.MethodGet, "/admin/get",bytes.NewReader(admin))
+		request.Header.Set("token",token)
+		request.Header.Set("Content-Type","application/json")
+		response = httptest.NewRecorder()
+		s.ServeHTTP(response,request)
+		assertEqual(t,200,response.Code,"")
+	})
+	t.Run("it returns 200 on getting an admin", func(t *testing.T) {
+		userget := get{"1"}
+		superadmin,_ := json.Marshal(userget)
+		request,_ := http.NewRequest(http.MethodGet, "/superadmin/get",bytes.NewReader(superadmin))
 		request.Header.Set("token",token)
 		request.Header.Set("Content-Type","application/json")
 		response = httptest.NewRecorder()
@@ -191,7 +205,7 @@ func TestLogin(t *testing.T) {
 	s := router.Router()
 
 	t.Run("it returns 200 on user login", func(t *testing.T) {
-		saLogin := Login{Email:"user1@gmail.com",Pass:"zamorak"}
+		saLogin := Login{Email:"user1@gmail.com",Pass:"gutthix"}
 		b, _ := json.Marshal(saLogin)
 
 		request,_ := http.NewRequest(http.MethodPost, "/user/login",bytes.NewReader(b))
@@ -201,7 +215,7 @@ func TestLogin(t *testing.T) {
 		assertEqual(t,200,response.Code,"")
 	})
 	t.Run("it returns 200 on admin login", func(t *testing.T) {
-		saLogin := Login{Email:"admin1@gmail.com",Pass:"zamorak"}
+		saLogin := Login{Email:"admin1@gmail.com",Pass:"gutthix"}
 		b, _ := json.Marshal(saLogin)
 
 		request,_ := http.NewRequest(http.MethodPost, "/admin/login",bytes.NewReader(b))
@@ -211,7 +225,7 @@ func TestLogin(t *testing.T) {
 		assertEqual(t,200,response.Code,"")
 	})
 	t.Run("it returns 200 on superadmin login", func(t *testing.T) {
-		saLogin := Login{Email:"superadmin1@gmail.com",Pass:"zamorak"}
+		saLogin := Login{Email:"sourav241196@gmail.com",Pass:"zamorak"}
 		b, _ := json.Marshal(saLogin)
 
 		request,_ := http.NewRequest(http.MethodPost, "/superadmin/login",bytes.NewReader(b))
@@ -249,7 +263,7 @@ func TestUpdate (t *testing.T) {
 	token := response.Header().Get("token")
 	t.Run("It returns 200 on user update", func(t *testing.T) {
 		userget := upd{
-			Id:     "25",
+			Id:     "1",
 			Flag:   "1",
 			Update: "gutthix",
 		}
@@ -263,7 +277,7 @@ func TestUpdate (t *testing.T) {
 	})
 	t.Run("it returns 200 on admin update", func(t *testing.T) {
 		userget := upd{
-			Id:     "7",
+			Id:     "1",
 			Flag:   "1",
 			Update: "gutthix",
 		}
@@ -283,7 +297,7 @@ func TestDel(t *testing.T) {
 		Email string `json:"email"`
 		Pass string `json:"pass"`
 	}
-	saLogin := Login{Email:"superadmin1@gmail.com",Pass:"zamorak"}
+	saLogin := Login{Email:"sourav241196@gmail.com",Pass:"zamorak"}
 	type del struct {
 		Id	string	`json:"id"`
 	}
@@ -326,33 +340,10 @@ func TestDel(t *testing.T) {
 		s.ServeHTTP(response,request)
 		assertEqual(t,200,response.Code,"")
 	})
+	resetDBafterDelete(db,0)
 }
 
-func TestLogout(t *testing.T){
-	type Login struct {
-		Email string `json:"email"`
-		Pass string `json:"pass"`
-	}
-	saLogin := Login{Email:"sourav241196@gmail.com",Pass:"zamorak"}
-	db := mysql.NewMySqlDB("127.0.0.1","root","Zamorak1","3306","Restaurant_Test")
-	defer db.Close()
-	router := Server.NewRouter(db)
-	s := router.Router()
-	b, _ := json.Marshal(saLogin)
 
-	request,_ := http.NewRequest(http.MethodPost, "/superadmin/login",bytes.NewReader(b))
-	request.Header.Set("Content-Type","application/json")
-	response :=httptest.NewRecorder()
-	s.ServeHTTP(response,request)
-	token := response.Header().Get("token")
-	t.Run("It returns 200 on logout", func(t *testing.T) {
-		request,_ := http.NewRequest(http.MethodGet,"/logout",nil)
-		request.Header.Set("token",token)
-		response := httptest.NewRecorder()
-		s.ServeHTTP(response,request)
-		assertEqual(t,200,response.Code,"")
-	})
-}
 
 func TestRest(t *testing.T) {
 	type rest struct {
@@ -395,10 +386,11 @@ func TestRest(t *testing.T) {
 		response = httptest.NewRecorder()
 		s.ServeHTTP(response,request)
 		assertEqual(t,200,response.Code,"")
+		resetDBafterCreate(db)
 	})
 	t.Run("It returns 200 on getting a rest", func(t *testing.T) {
 		restcreate := rest{
-			Id:"21",
+			Id:"1",
 		}
 		rest,_ := json.Marshal(restcreate)
 		request,_ := http.NewRequest(http.MethodGet, "/rest/get",bytes.NewReader(rest))
@@ -410,7 +402,7 @@ func TestRest(t *testing.T) {
 	})
 	t.Run("It returns 200 on updating a rest", func(t *testing.T) {
 		restcreate := rest{
-			Id:"20",
+			Id:"1",
 			Update1:"user2@gmail.com",
 			Update2:"",
 			Flag:"2",
@@ -425,7 +417,7 @@ func TestRest(t *testing.T) {
 	})
 	t.Run("It returns 200 on deleting a rest", func(t *testing.T) {
 		restcreate := rest{
-			Id:"21",
+			Id:"1",
 		}
 		rest,_ := json.Marshal(restcreate)
 		request,_ := http.NewRequest(http.MethodDelete, "/rest/del",bytes.NewReader(rest))
@@ -434,6 +426,7 @@ func TestRest(t *testing.T) {
 		response = httptest.NewRecorder()
 		s.ServeHTTP(response,request)
 		assertEqual(t,200,response.Code,"")
+		resetDBafterDelete(db,1)
 	})
 	t.Run("It returns 200 on list", func(t *testing.T) {
 		request,_ := http.NewRequest(http.MethodGet, "/rest/list",nil)
@@ -444,7 +437,7 @@ func TestRest(t *testing.T) {
 	})
 	t.Run("It return 200 on getting menu", func(t *testing.T) {
 		restcreate:= rest{
-			Id: "20",
+			Id: "1",
 		}
 		rest,_ := json.Marshal(restcreate)
 		request,_ := http.NewRequest(http.MethodGet, "/rest/menu",bytes.NewReader(rest))
@@ -485,7 +478,7 @@ func TestDish(t *testing.T) {
 	t.Run("It return 200 on creating a dish", func(t *testing.T) {
 		dishcreate := dish{
 			Name:  "burger",
-			Rid:   "20",
+			Rid:   "1",
 			Price: "150",
 		}
 		dish, _ := json.Marshal(dishcreate)
@@ -495,11 +488,12 @@ func TestDish(t *testing.T) {
 		response = httptest.NewRecorder()
 		s.ServeHTTP(response, request)
 		assertEqual(t, 200, response.Code, "")
+		resetDBafterCreate(db)
 	})
 	t.Run("It return 200 on updating a dish", func(t *testing.T) {
 		dishcreate := dish{
-			Id:     "12",
-			Rid:    "20",
+			Id:     "1",
+			Rid:    "1",
 			Flag:   "1",
 			Update: "100",
 		}
@@ -513,8 +507,8 @@ func TestDish(t *testing.T) {
 	})
 	t.Run("It return 200 on deleting a dish", func(t *testing.T) {
 		dishcreate := dish{
-			Id:  "12",
-			Rid: "20",
+			Id:  "1",
+			Rid: "1",
 		}
 		dish, _ := json.Marshal(dishcreate)
 		request, _ := http.NewRequest(http.MethodDelete, "/rest/dish/del", bytes.NewReader(dish))
@@ -523,8 +517,37 @@ func TestDish(t *testing.T) {
 		response = httptest.NewRecorder()
 		s.ServeHTTP(response, request)
 		assertEqual(t, 200, response.Code, "")
+		resetDBafterDelete(db,2)
 	})
 }
+
+func TestLogout(t *testing.T){
+	type Login struct {
+		Email string `json:"email"`
+		Pass string `json:"pass"`
+	}
+	saLogin := Login{Email:"sourav241196@gmail.com",Pass:"zamorak"}
+	db := mysql.NewMySqlDB("127.0.0.1","root","Zamorak1","3306","Restaurant_Test")
+	defer db.Close()
+	router := Server.NewRouter(db)
+	s := router.Router()
+	b, _ := json.Marshal(saLogin)
+
+	request,_ := http.NewRequest(http.MethodPost, "/superadmin/login",bytes.NewReader(b))
+	request.Header.Set("Content-Type","application/json")
+	response :=httptest.NewRecorder()
+	s.ServeHTTP(response,request)
+	token := response.Header().Get("token")
+	t.Run("It returns 200 on logout", func(t *testing.T) {
+		request,_ := http.NewRequest(http.MethodGet,"/logout",nil)
+		request.Header.Set("token",token)
+		response := httptest.NewRecorder()
+		s.ServeHTTP(response,request)
+		assertEqual(t,200,response.Code,"")
+	})
+}
+
+
 
 func assertEqual(t *testing.T, expected interface{}, got interface{}, message string) {
 	if expected == got {
@@ -534,4 +557,37 @@ func assertEqual(t *testing.T, expected interface{}, got interface{}, message st
 		message = fmt.Sprintf("%v != %v", expected, got)
 	}
 	t.Fatal(message)
+}
+
+func resetDBafterCreate(db *mysql.MysqlDB) {
+	println("@@@@@@@@@@@@@@")
+	db.Query("delete from superadmin where id <> '1'")
+	db.Query("ALTER table superadmin AUTO_INCREMENT=2")
+	db.Query("delete from admin where id <> '1'")
+	db.Query("ALTER table admin AUTO_INCREMENT=2")
+	db.Query("delete from user where id <> '1'")
+	db.Query("ALTER table user AUTO_INCREMENT=2")
+	db.Query("delete from rest where id <> '1'")
+	db.Query("ALTER table rest AUTO_INCREMENT=19")
+	db.Query("delete from dish where id <> '1'")
+	db.Query("ALTER table dish AUTO_INCREMENT=2")
+
+}
+
+func resetDBafterDelete(db *mysql.MysqlDB,flag int) {
+	if flag == 0{
+		db.Query("ALTER table User AUTO_INCREMENT=1")
+		db.Query("INSERT INTO User VALUES ('user1', '$2a$04$y9ExoM60HYRfNxm8N/tE3.YHVS/RhHB/6eaztdwVYhoRPspofsmk2', 'user1@gmail.com', '1', '1', '1', '1', '2019-08-09 14:12:25')")
+		db.Query("ALTER table admin AUTO_INCREMENT=1")
+		db.Query("INSERT INTO Admin VALUES ('admin1', '$2a$04$AKe7E84SCtQZCjPYpRCN6OrdMS/VnV0Qx93Os.TU8nO71Tt67ysmG', 'admin1@gmail.com', '1', '2', '1', '1', '2019-08-08 15:47:35')")
+		db.Query("ALTER table superadmin AUTO_INCREMENT=1")
+		db.Query("INSERT INTO superadmin VALUES ('Sourav', '$2a$04$CAIRyD6NVptXbB25PEUFJeYEsBwIouUYLigBhWocbcmvOZrc7.OV.', 'sourav241196@gmail.com', '0', '2', '1', '1', '2019-08-08 14:14:10')")
+	} else if flag == 1 {
+		db.Query("ALTER table rest AUTO_INCREMEnt=2")
+		db.Query("update rest set status = '1' where id = '1'")
+	} else if flag == 2 {
+		db.Query("ALTER table dish AUTO_INCREMENT=2")
+		db.Query("update dish set status = '1' where id = '1'")
+	}
+
 }
