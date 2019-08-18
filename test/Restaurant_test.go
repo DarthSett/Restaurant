@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-
+//todo: write integration tests
 
 
 func TestDist(t *testing.T){
@@ -20,11 +20,12 @@ func TestDist(t *testing.T){
 		Long string	`json:"long"`
 		Dist string	 `json:"dist"`
 	}
-	data := &Distdata{
+	data := Distdata{
 		Lat:  "112.23",
 		Long: "30.233",
 		Dist: "3000",
 	}
+
 	db := mysql.NewMySqlDB("127.0.0.1","root","Zamorak1","3306","Restaurant_Test")
 	defer db.Close()
 	router := Server.NewRouter(db)
@@ -111,6 +112,95 @@ func TestCreate(t *testing.T) {
 		assertEqual(t,200,response.Code,"")
 		resetDBafterCreate(db)
 	})
+	t.Run("integration test for creating user", func(t *testing.T) {
+		userdata := make([]create,5)
+		login := make([]Login,3)
+		login[0] = Login{
+			Email: "sourav241196@gmail.com",
+			Pass:  "zamorak",
+		}
+		login[1] = Login{
+			Email: "user1@gmail.com",
+			Pass:  "gutthix",
+		}
+		login[2] = Login{
+			Email: "admin1@gmail.com",
+			Pass:  "gutthix",
+		}
+		userdata[0] = create{
+			Name:  "user2",
+			Pass:  "zamorak",
+			Email: "user2@gmail.com",
+		}
+		userdata[1] = create{
+			Name:  "user2",
+			Pass:  "",
+			Email: "user2@gmail.com",
+		}
+		userdata[2] = create{
+			Name:  "",
+			Pass:  "zamorak",
+			Email: "user2@gmail.com",
+		}
+		userdata[3] = create{
+			Name:  "user2",
+			Pass:  "zamorak",
+			Email: "",
+		}
+		userdata[4] = create{
+			Name:  "user2",
+			Pass:  "zamorak",
+			Email: "user1@gmail.com",
+		}
+		type testData struct {
+			login Login
+			c create
+			expected int
+		}
+		data := make([]testData,15)
+		data[0] = testData{login[0], userdata[0], 200}
+		data[1] = testData{login[0],userdata[1],400}
+		data[2] = testData{login[0],userdata[2],400}
+		data[3] = testData{login[0],userdata[3],400}
+		data[4] = testData{login[0],userdata[4],500}
+		data[5] = testData{login[1],userdata[0],401}
+		data[6] = testData{login[1],userdata[1],401}
+		data[7] = testData{login[1],userdata[2],401}
+		data[8] = testData{login[1],userdata[3],401}
+		data[9] = testData{login[1],userdata[4],401}
+		data[10] = testData{login[2],userdata[0],200}
+		data[11] = testData{login[2],userdata[1],400}
+		data[12] = testData{login[2],userdata[2],400}
+		data[13] = testData{login[2],userdata[3],400}
+		data[14] = testData{login[2],userdata[4],500}
+		for i,_ :=range data {
+
+			if i < 5 {
+				b, _ := json.Marshal(data[i].login)
+				request,_ = http.NewRequest(http.MethodPost, "/superadmin/login",bytes.NewReader(b))
+			} else if i > 4 && i < 10 {
+				b, _ := json.Marshal(data[i].login)
+				request,_ = http.NewRequest(http.MethodPost, "/user/login",bytes.NewReader(b))
+			} else {
+				b, _ := json.Marshal(data[i].login)
+				request,_ = http.NewRequest(http.MethodPost, "/admin/login",bytes.NewReader(b))
+			}
+			request.Header.Set("Content-Type","application/json")
+			response :=httptest.NewRecorder()
+			s.ServeHTTP(response,request)
+			token := response.Header().Get("token")
+			user,_ := json.Marshal(data[i].c)
+			request,_ = http.NewRequest(http.MethodPost, "/user/create",bytes.NewReader(user))
+			request.Header.Set("token",token)
+			request.Header.Set("Content-Type","application/json")
+			response = httptest.NewRecorder()
+			s.ServeHTTP(response,request)
+			assertEqual(t,data[i].expected,response.Code,"")
+			resetDBafterCreate(db)
+		}
+
+	})
+
 
 }
 

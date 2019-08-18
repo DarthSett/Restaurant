@@ -115,7 +115,7 @@ func (db *MysqlDB) DeleteUser(id int) error{
 	_,err := db.Query(q)
 	return err
 }
-//UpdateUser updates a user row in db. flag =0 for name, flag = 1 for password, flag = 2 for email
+//UpdateUser updates a user row in db. flag = 0 for name, flag = 1 for password, flag = 2 for email
 func (db *MysqlDB) UpdateUser(id int,update string,flag int) error {
 	var q string
 	if flag == 0 {

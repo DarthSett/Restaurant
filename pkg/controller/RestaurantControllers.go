@@ -22,7 +22,7 @@ func NewRestController(db database.Database) *RestController {
 }
 
 
-
+//todo: replace panics with errors
 
 func (u *RestController) RestMake(c *gin.Context){
 

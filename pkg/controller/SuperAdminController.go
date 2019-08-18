@@ -7,6 +7,7 @@ import (
 	"github.com/restaurant/pkg/database"
 	"github.com/restaurant/pkg/models"
 	"golang.org/x/crypto/bcrypt"
+	"net/http"
 	"strconv"
 )
 
@@ -25,7 +26,7 @@ func (u *SuperAdminController) SuperAdminmake(c *gin.Context){
 	input := make(map[string]string)
 	err := c.BindJSON(&input)
 	if err != nil {
-		panic("Error getting inputs: " + err.Error())
+		c.AbortWithError(http.StatusInternalServerError,fmt.Errorf("Error getting inputs: " + err.Error()))
 	}
 	//
 	//name := c.PostForm("name")
@@ -33,21 +34,21 @@ func (u *SuperAdminController) SuperAdminmake(c *gin.Context){
 	//email := c.PostForm("email")
 
 
-	if input["email"] == "" {panic("no email sent")}
-	if input["pass"] == "" {panic("no pass sent")}
-	if input["name"] == "" {panic("no name sent")}
+	if input["email"] == "" {c.AbortWithError(http.StatusBadRequest,fmt.Errorf("no email sent"))}
+	if input["pass"] == "" {c.AbortWithError(http.StatusBadRequest,fmt.Errorf("no pass sent"))}
+	if input["name"] == "" {c.AbortWithError(http.StatusBadRequest,fmt.Errorf("no name sent"))}
 
 
 
 	hash,err := bcrypt.GenerateFromPassword([]byte(input["pass"]),4)
 	if err != nil {
-		panic("Error encrypting password: " + err.Error())
+		c.AbortWithError(http.StatusInternalServerError,fmt.Errorf("Error encrypting password: " + err.Error()))
 	}
 	SuperAdmin := models.NewUser(input["name"],input["email"],string(hash),2,0,0,0)
 	println(SuperAdmin.Name, SuperAdmin.Pass)
 	err = u.CreateSuperAdmin(SuperAdmin)
 	if err != nil {
-		panic("Error while saving SuperAdmin to db: " + err.Error())
+		c.AbortWithError(http.StatusInternalServerError,fmt.Errorf("Error while saving SuperAdmin to db: " + err.Error()))
 	}
 	c.Writer.Write([]byte("SuperAdmin Saved"))
 
@@ -58,18 +59,18 @@ func (u *SuperAdminController) SuperAdminget(c *gin.Context){
 	input := make(map[string]string)
 	err := c.BindJSON(&input)
 	if err != nil {
-		panic("Error getting inputs: " + err.Error())
+		c.AbortWithError(http.StatusInternalServerError,fmt.Errorf("Error getting inputs: " + err.Error()))
 	}
 
-	if input["id"] == "" {panic("no id sent")}
+	if input["id"] == "" {c.AbortWithError(http.StatusBadRequest,fmt.Errorf("no id sent"))}
 
 	id,err := strconv.Atoi(fmt.Sprintf("%v",input["id"]))
 	if err != nil {
-		panic("Error getting id from input: "+ err.Error())
+		c.AbortWithError(http.StatusInternalServerError,fmt.Errorf("Error getting id from input: "+ err.Error()))
 	}
 	SuperAdmin,err := u.GetSuperAdmin("",id)
 	if err != nil {
-		panic("Error getting SuperAdmin from db: "+ err.Error())
+		c.AbortWithError(http.StatusInternalServerError,fmt.Errorf("Error getting SuperAdmin from db: "+ err.Error()))
 	}
 	SuperAdmin.Pass = ""
 	c.JSON(200,SuperAdmin)
@@ -81,11 +82,11 @@ func (u *SuperAdminController) SuperAdminDel(c *gin.Context){
 	claims := clms.(jwt.MapClaims)
 	id,err := strconv.Atoi(fmt.Sprintf("%v",claims["id"]))
 	if err != nil {
-		panic("Error getting id from input: "+ err.Error())
+		c.AbortWithError(http.StatusInternalServerError,fmt.Errorf("Error getting id from input: "+ err.Error()))
 	}
 	err = u.DeleteSuperAdmin(id)
 	if err != nil {
-		panic("Error getting SuperAdmin from db: "+ err.Error())
+		c.AbortWithError(http.StatusInternalServerError,fmt.Errorf("Error getting SuperAdmin from db: "+ err.Error()))
 	}
 	c.Writer.Write([]byte(string(id) + " Deleted from db"))
 }
@@ -94,28 +95,28 @@ func (u *SuperAdminController) SuperAdminLogin(c *gin.Context)  {
 	input := make(map[string]string)
 	err := c.BindJSON(&input)
 	if err != nil {
-		panic("Error getting inputs: " + err.Error())
+		c.AbortWithError(http.StatusInternalServerError,fmt.Errorf("Error getting inputs: " + err.Error()))
 	}
 
-	if input["email"] == "" {panic("no email sent")}
-	if input["pass"] == "" {panic("no pass sent")}
+	if input["email"] == "" {c.AbortWithError(http.StatusBadRequest,fmt.Errorf("no email sent"))}
+	if input["pass"] == "" {c.AbortWithError(http.StatusBadRequest,fmt.Errorf("no pass sent"))}
 
 
 	sa,err := u.GetSuperAdmin(input["email"],0)
 	if err != nil {
-		panic("Error getting user from db: " + err.Error())
+		c.AbortWithError(http.StatusInternalServerError,fmt.Errorf("Error getting user from db: " + err.Error()))
 	}
 	println("id: ",sa.Id)
 	println(input["pass"])
 
 	err = bcrypt.CompareHashAndPassword([]byte(sa.Pass),[]byte(input["pass"]))
 	if err != nil {
-		panic("Error matching passwords: " + err.Error())
+		c.AbortWithError(http.StatusInternalServerError,fmt.Errorf("Error matching passwords: " + err.Error()))
 	} else {
 		t ,err :=generateToken(sa)
 		println(t)
 		if err != nil {
-			panic("Error creating tokens: " + err.Error())
+			c.AbortWithError(http.StatusInternalServerError,fmt.Errorf("Error creating tokens: " + err.Error()))
 		}
 		c.Writer.Header().Set("token" , t)
 		println(t)

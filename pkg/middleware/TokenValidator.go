@@ -33,6 +33,7 @@ func (u *MidController)TokenValidator(c *gin.Context) {
 		panic("token not valid: " + err.Error())
 		c.AbortWithError(http.StatusUnauthorized,err)
 	}
+	println(claims["id"])
 	c.Set("claims",claims)
 
 	//	claims := token.Claims.(jwt.MapClaims)

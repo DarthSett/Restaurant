@@ -8,6 +8,8 @@ import (
 	"time"
 )
 
+//todo: replace panics with errors
+
 func generateToken (user *models.User) (string,error) {
 	token := jwt.New(jwt.SigningMethodHS256)
 	claims := token.Claims.(jwt.MapClaims)
