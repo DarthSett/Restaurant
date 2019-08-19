@@ -34,7 +34,7 @@ func TestCreateAdmin(t *testing.T) {
 	}
 	login[1] = Login{
 		Email: "admin1@gmail.com",
-		Pass:  "gutthix",
+		Pass:  "zamorak",
 	}
 	admindata[0] = create{
 		Name:  "admin2",
@@ -153,7 +153,7 @@ func TestLoginAdmin(t *testing.T) {
 	login := make([]Login,5)
 	login[0] = Login{
 		Email: "admin1@gmail.com",
-		Pass:  "gutthix",
+		Pass:  "zamorak",
 	}
 	login[1] = Login{
 		Email: "",
@@ -165,7 +165,7 @@ func TestLoginAdmin(t *testing.T) {
 	}
 	login[3] = Login{
 		Email: "admin1@gmail.com",
-		Pass:  "zamorak",
+		Pass:  "gutthix",
 	}
 	login[4] = Login{
 		Email: "admin3@gmail.com",

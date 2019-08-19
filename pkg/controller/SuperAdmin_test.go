@@ -27,8 +27,7 @@ func TestCreatesuperadmin(t *testing.T) {
 	s := router.Router()
 
 	superadmindata := make([]create,5)
-	login := make([]Login,2)
-	login[0] = Login{
+	login := Login{
 		Email: "sourav241196@gmail.com",
 		Pass:  "zamorak",
 	}
@@ -64,11 +63,11 @@ func TestCreatesuperadmin(t *testing.T) {
 		expected int
 	}
 	data := make([]testData,5)
-	data[0] = testData{login[0], superadmindata[0], 200}
-	data[1] = testData{login[0],superadmindata[1],400}
-	data[2] = testData{login[0],superadmindata[2],400}
-	data[3] = testData{login[0],superadmindata[3],400}
-	data[4] = testData{login[0],superadmindata[4],500}
+	data[0] = testData{login, superadmindata[0], 200}
+	data[1] = testData{login,superadmindata[1],400}
+	data[2] = testData{login,superadmindata[2],400}
+	data[3] = testData{login,superadmindata[3],400}
+	data[4] = testData{login,superadmindata[4],500}
 
 	var request *http.Request
 	for i,_ :=range data {

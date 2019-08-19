@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5c68017-4e63-4bc7-9d16-c251d9e34bf6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pkg/controller/Admin_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/controller/SuperAdmin_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/controller/User_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/helpers/testHelpers.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/controller/Rest_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/controller/AdminController.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/AdminController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/controller/RestaurantControllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/RestaurantControllers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/controller/SuperAdminController.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/SuperAdminController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/controller/UserControllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/UserControllers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/controller/common.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/common.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/database/mysql/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/database/mysql/mysql.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/middleware/TokenValidator.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/middleware/TokenValidator.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Restaurant_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/Restaurant_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/controller/Admin_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/Admin_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/controller/SuperAdmin_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/SuperAdmin_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Restaurant_test.go" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="266" />
+    <option name="myElementSize" value="256" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -87,7 +79,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestCreatesuperadmin in github.com/restaurant/pkg/controller">
+  <component name="RunManager" selected="Go Test.TestDist in github.com/restaurant/pkg/controller">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="restaurant" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -95,49 +87,49 @@
       <kind value="FILE" />
       <method v="2" />
     </configuration>
-    <configuration name="TestCreatesuperadmin in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestCreate in github.com/restaurant/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="restaurant" />
-      <working_directory value="$PROJECT_DIR$/pkg/controller" />
+      <working_directory value="$PROJECT_DIR$/test" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="github.com/restaurant/pkg/controller" />
-      <pattern value="^TestCreatesuperadmin$" />
+      <package value="github.com/restaurant/test" />
+      <pattern value="^TestCreate$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestDel in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestDish in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="restaurant" />
       <working_directory value="$PROJECT_DIR$/pkg/controller" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/restaurant/pkg/controller" />
-      <pattern value="^TestDel$" />
+      <pattern value="^TestDish$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestDelsuperadmin in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestDist in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="restaurant" />
       <working_directory value="$PROJECT_DIR$/pkg/controller" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/restaurant/pkg/controller" />
-      <pattern value="^TestDelsuperadmin$" />
+      <pattern value="^TestDist$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestGetsuperadmin in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestDist in github.com/restaurant/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="restaurant" />
-      <working_directory value="$PROJECT_DIR$/pkg/controller" />
+      <working_directory value="$PROJECT_DIR$/test" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="github.com/restaurant/pkg/controller" />
-      <pattern value="^TestGetsuperadmin$" />
+      <package value="github.com/restaurant/test" />
+      <pattern value="^TestDist$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestLoginsuperadmin in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestRest in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="restaurant" />
       <working_directory value="$PROJECT_DIR$/pkg/controller" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/restaurant/pkg/controller" />
-      <pattern value="^TestLoginsuperadmin$" />
+      <pattern value="^TestRest$" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
@@ -150,11 +142,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestCreatesuperadmin in github.com/restaurant/pkg/controller" />
-        <item itemvalue="Go Test.TestGetsuperadmin in github.com/restaurant/pkg/controller" />
-        <item itemvalue="Go Test.TestDelsuperadmin in github.com/restaurant/pkg/controller" />
-        <item itemvalue="Go Test.TestLoginsuperadmin in github.com/restaurant/pkg/controller" />
-        <item itemvalue="Go Test.TestDel in github.com/restaurant/pkg/controller" />
+        <item itemvalue="Go Test.TestDist in github.com/restaurant/pkg/controller" />
+        <item itemvalue="Go Test.TestDish in github.com/restaurant/pkg/controller" />
+        <item itemvalue="Go Test.TestRest in github.com/restaurant/pkg/controller" />
+        <item itemvalue="Go Test.TestCreate in github.com/restaurant/test" />
+        <item itemvalue="Go Test.TestDist in github.com/restaurant/test" />
       </list>
     </recent_temporary>
   </component>
@@ -190,29 +182,32 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/restaurant$TestLogout_in_github_com_restaurant_pkg_controller.out" NAME="TestLogout in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566134265395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/restaurant$TestCreatesuperadmin_in_github_com_restaurant_pkg_controller.out" NAME="TestCreatesuperadmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566137354070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/restaurant$TestCreatesuperadmin_in_github_com_restaurant_pkg_controller.out" NAME="TestCreatesuperadmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566180164879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestDel_in_github_com_restaurant_pkg_controller.out" NAME="TestDel in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566136716780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$go_test_github_com_restaurant_test.out" NAME="go test github.com/restaurant/test Coverage Results" MODIFIED="1565774232901" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestLoginsuperadmin_in_github_com_restaurant_pkg_controller.out" NAME="TestLoginsuperadmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566137209487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestCreate_it_returns_401_on_creating_an_admin_as_an_admin_in_github_com_restaurant_test.out" NAME="TestCreate/it_returns_401_on_creating_an_admin_as_an_admin in github.com/restaurant/test Coverage Results" MODIFIED="1565774957817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestLogin_in_github_com_restaurant_pkg_controller.out" NAME="TestLogin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566058393045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestLoginadmin_in_github_com_restaurant_pkg_controller.out" NAME="TestLoginadmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566135538026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/restaurant$TestDist_in_github_com_restaurant_test.out" NAME="TestDist in github.com/restaurant/test Coverage Results" MODIFIED="1565766211156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/restaurant$TestDist_in_github_com_restaurant_test.out" NAME="TestDist in github.com/restaurant/test Coverage Results" MODIFIED="1566180971682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestUpdate_in_github_com_restaurant_pkg_controller.out" NAME="TestUpdate in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566136708134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/restaurant$go_test_github_com_restaurant_pkg_controller.out" NAME="go test github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566134379880" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/restaurant$go_test_github_com_restaurant_pkg_controller.out" NAME="go test github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566180925556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestLoginAdmin_in_github_com_restaurant_pkg_controller.out" NAME="TestLoginAdmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566136673363" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestList_in_github_com_restaurant_pkg_controller.out" NAME="TestList in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566058700217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestGetsuperadmin_in_github_com_restaurant_pkg_controller.out" NAME="TestGetsuperadmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566137277294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestCreate_integration_test_for_creating_user_in_github_com_restaurant_test.out" NAME="TestCreate/integration_test_for_creating_user in github.com/restaurant/test Coverage Results" MODIFIED="1565782072915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestDelsuperadmin_in_github_com_restaurant_pkg_controller.out" NAME="TestDelsuperadmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566137221567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$go_test_github_com_restaurant_pkg_database.out" NAME="go test github.com/restaurant/pkg/database Coverage Results" MODIFIED="1565765736226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/restaurant$TestRest_in_github_com_restaurant_pkg_controller.out" NAME="TestRest in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566181006073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestCreate_it_returns_400_on_creating_an_admin_as_an_admin_in_github_com_restaurant_test.out" NAME="TestCreate/it_returns_400_on_creating_an_admin_as_an_admin in github.com/restaurant/test Coverage Results" MODIFIED="1565774876183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestCreateAdmin_in_github_com_restaurant_pkg_controller.out" NAME="TestCreateAdmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566135247309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/restaurant$TestCreate_in_github_com_restaurant_test.out" NAME="TestCreate in github.com/restaurant/test Coverage Results" MODIFIED="1565766300614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/restaurant$TestDist_in_github_com_restaurant_pkg_controller.out" NAME="TestDist in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566181236198" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/restaurant$TestCreate_in_github_com_restaurant_test.out" NAME="TestCreate in github.com/restaurant/test Coverage Results" MODIFIED="1566180989014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestCreate_it_returns_500_on_creating_a_user_without_name_in_github_com_restaurant_test.out" NAME="TestCreate/it_returns_500_on_creating_a_user_without_name in github.com/restaurant/test Coverage Results" MODIFIED="1565775221749" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestCreate_in_github_com_restaurant_pkg_controller.out" NAME="TestCreate in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566058428600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestGet_in_github_com_restaurant_pkg_controller.out" NAME="TestGet in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566135399695" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestCreate_it_returns_401_on_creating_a_superadmin_as_a_user_in_github_com_restaurant_test.out" NAME="TestCreate/it_returns_401_on_creating_a_superadmin_as_a_user in github.com/restaurant/test Coverage Results" MODIFIED="1565774982565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/restaurant$TestDish_in_github_com_restaurant_pkg_controller.out" NAME="TestDish in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566181023630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestGetAdmin_in_github_com_restaurant_pkg_controller.out" NAME="TestGetAdmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566136687148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
