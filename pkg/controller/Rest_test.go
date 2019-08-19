@@ -50,11 +50,11 @@ func TestRest(t *testing.T) {
 		Update2 string `json:"update2"`
 		Flag string `json:"flag"`
 	}
-	type Login struct {
-		Email string `json:"email"`
-		Pass string `json:"pass"`
-	}
 	saLogin := Login{Email:"sourav241196@gmail.com",Pass:"zamorak"}
+	Alogin := Login{
+		Email: "admin1@gmail.com",
+		Pass:  "zamorak",
+	}
 	db := mysql.NewMySqlDB("127.0.0.1","root","Zamorak1","3306","Restaurant_Test")
 	defer db.Close()
 	router := Server.NewRouter(db)
@@ -109,6 +109,28 @@ func TestRest(t *testing.T) {
 		s.ServeHTTP(response,request)
 		helpers.AssertEqual(t,200,response.Code,"")
 	})
+	t.Run("It returns 200 on updating a rest from admin login", func(t *testing.T) {
+		b, _ := json.Marshal(Alogin)
+
+		request,_ := http.NewRequest(http.MethodPost, "/admin/login",bytes.NewReader(b))
+		request.Header.Set("Content-Type","application/json")
+		response :=httptest.NewRecorder()
+		s.ServeHTTP(response,request)
+		token := response.Header().Get("token")
+		restcreate := rest{
+			Id:"1",
+			Update1:"user2@gmail.com",
+			Update2:"",
+			Flag:"2",
+		}
+		rest,_ := json.Marshal(restcreate)
+		request,_ = http.NewRequest(http.MethodPut, "/rest/update",bytes.NewReader(rest))
+		request.Header.Set("token",token)
+		request.Header.Set("Content-Type","application/json")
+		response = httptest.NewRecorder()
+		s.ServeHTTP(response,request)
+		helpers.AssertEqual(t,200,response.Code,"")
+	})
 	t.Run("It returns 200 on deleting a rest", func(t *testing.T) {
 		restcreate := rest{
 			Id:"1",
@@ -150,6 +172,14 @@ func TestDish(t *testing.T) {
 		Pass  string `json:"pass"`
 	}
 	saLogin := Login{Email: "sourav241196@gmail.com", Pass: "zamorak"}
+	Alogin := Login{
+		Email: "admin1@gmail.com",
+		Pass:  "zamorak",
+	}
+	Ulogin := Login{
+		Email: "user1@gmail.com",
+		Pass:  "zamorak",
+	}
 	type dish struct {
 		Name   string `json:"dish"`
 		Id     string `json:"id"`
@@ -184,6 +214,48 @@ func TestDish(t *testing.T) {
 		helpers.AssertEqual(t, 200, response.Code, "")
 		helpers.ResetDBafterCreate(db)
 	})
+	t.Run("It return 200 on creating a dish by admin login", func(t *testing.T) {
+		dishcreate := dish{
+			Name:  "burger",
+			Rid:   "1",
+			Price: "150",
+		}
+		b, _ := json.Marshal(Alogin)
+		request, _ := http.NewRequest(http.MethodPost, "/admin/login", bytes.NewReader(b))
+		request.Header.Set("Content-Type", "application/json")
+		response := httptest.NewRecorder()
+		s.ServeHTTP(response, request)
+		token := response.Header().Get("token")
+		dish, _ := json.Marshal(dishcreate)
+		request, _ = http.NewRequest(http.MethodPost, "/rest/dish/create", bytes.NewReader(dish))
+		request.Header.Set("token", token)
+		request.Header.Set("Content-Type", "application/json")
+		response = httptest.NewRecorder()
+		s.ServeHTTP(response, request)
+		helpers.AssertEqual(t, 200, response.Code, "")
+		helpers.ResetDBafterCreate(db)
+	})
+	t.Run("It return 200 on creating a dish by user login", func(t *testing.T) {
+		dishcreate := dish{
+			Name:  "burger",
+			Rid:   "1",
+			Price: "150",
+		}
+		b, _ := json.Marshal(Ulogin)
+		request, _ := http.NewRequest(http.MethodPost, "/user/login", bytes.NewReader(b))
+		request.Header.Set("Content-Type", "application/json")
+		response := httptest.NewRecorder()
+		s.ServeHTTP(response, request)
+		token := response.Header().Get("token")
+		dish, _ := json.Marshal(dishcreate)
+		request, _ = http.NewRequest(http.MethodPost, "/rest/dish/create", bytes.NewReader(dish))
+		request.Header.Set("token", token)
+		request.Header.Set("Content-Type", "application/json")
+		response = httptest.NewRecorder()
+		s.ServeHTTP(response, request)
+		helpers.AssertEqual(t, 200, response.Code, "")
+		helpers.ResetDBafterCreate(db)
+	})
 	t.Run("It return 200 on updating a dish", func(t *testing.T) {
 		dishcreate := dish{
 			Id:     "1",
@@ -191,8 +263,51 @@ func TestDish(t *testing.T) {
 			Flag:   "1",
 			Update: "100",
 		}
+
 		dish, _ := json.Marshal(dishcreate)
 		request, _ := http.NewRequest(http.MethodPut, "/rest/dish/update", bytes.NewReader(dish))
+		request.Header.Set("token", token)
+		request.Header.Set("Content-Type", "application/json")
+		response = httptest.NewRecorder()
+		s.ServeHTTP(response, request)
+		helpers.AssertEqual(t, 200, response.Code, "")
+	})
+	t.Run("It return 200 on updating a dish by admin login", func(t *testing.T) {
+		dishcreate := dish{
+			Id:     "1",
+			Rid:    "1",
+			Flag:   "1",
+			Update: "100",
+		}
+		b, _ := json.Marshal(Alogin)
+		request, _ := http.NewRequest(http.MethodPost, "/admin/login", bytes.NewReader(b))
+		request.Header.Set("Content-Type", "application/json")
+		response := httptest.NewRecorder()
+		s.ServeHTTP(response, request)
+		token := response.Header().Get("token")
+		dish, _ := json.Marshal(dishcreate)
+		request, _ = http.NewRequest(http.MethodPut, "/rest/dish/update", bytes.NewReader(dish))
+		request.Header.Set("token", token)
+		request.Header.Set("Content-Type", "application/json")
+		response = httptest.NewRecorder()
+		s.ServeHTTP(response, request)
+		helpers.AssertEqual(t, 200, response.Code, "")
+	})
+	t.Run("It return 200 on updating a dish by user login", func(t *testing.T) {
+		dishcreate := dish{
+			Id:     "1",
+			Rid:    "1",
+			Flag:   "1",
+			Update: "100",
+		}
+		b, _ := json.Marshal(Ulogin)
+		request, _ := http.NewRequest(http.MethodPost, "/user/login", bytes.NewReader(b))
+		request.Header.Set("Content-Type", "application/json")
+		response := httptest.NewRecorder()
+		s.ServeHTTP(response, request)
+		token := response.Header().Get("token")
+		dish, _ := json.Marshal(dishcreate)
+		request, _ = http.NewRequest(http.MethodPut, "/rest/dish/update", bytes.NewReader(dish))
 		request.Header.Set("token", token)
 		request.Header.Set("Content-Type", "application/json")
 		response = httptest.NewRecorder()
@@ -206,6 +321,46 @@ func TestDish(t *testing.T) {
 		}
 		dish, _ := json.Marshal(dishcreate)
 		request, _ := http.NewRequest(http.MethodDelete, "/rest/dish/del", bytes.NewReader(dish))
+		request.Header.Set("token", token)
+		request.Header.Set("Content-Type", "application/json")
+		response = httptest.NewRecorder()
+		s.ServeHTTP(response, request)
+		helpers.AssertEqual(t, 200, response.Code, "")
+		helpers.ResetDBafterDelete(db,2)
+	})
+	t.Run("It return 200 on deleting a dish on admin login", func(t *testing.T) {
+		dishcreate := dish{
+			Id:  "1",
+			Rid: "1",
+		}
+		b, _ := json.Marshal(Alogin)
+		request, _ := http.NewRequest(http.MethodPost, "/admin/login", bytes.NewReader(b))
+		request.Header.Set("Content-Type", "application/json")
+		response := httptest.NewRecorder()
+		s.ServeHTTP(response, request)
+		token := response.Header().Get("token")
+		dish, _ := json.Marshal(dishcreate)
+		request, _ = http.NewRequest(http.MethodDelete, "/rest/dish/del", bytes.NewReader(dish))
+		request.Header.Set("token", token)
+		request.Header.Set("Content-Type", "application/json")
+		response = httptest.NewRecorder()
+		s.ServeHTTP(response, request)
+		helpers.AssertEqual(t, 200, response.Code, "")
+		helpers.ResetDBafterDelete(db,2)
+	})
+	t.Run("It return 200 on deleting a dish on user login", func(t *testing.T) {
+		dishcreate := dish{
+			Id:  "1",
+			Rid: "1",
+		}
+		b, _ := json.Marshal(Ulogin)
+		request, _ := http.NewRequest(http.MethodPost, "/user/login", bytes.NewReader(b))
+		request.Header.Set("Content-Type", "application/json")
+		response := httptest.NewRecorder()
+		s.ServeHTTP(response, request)
+		token := response.Header().Get("token")
+		dish, _ := json.Marshal(dishcreate)
+		request, _ = http.NewRequest(http.MethodDelete, "/rest/dish/del", bytes.NewReader(dish))
 		request.Header.Set("token", token)
 		request.Header.Set("Content-Type", "application/json")
 		response = httptest.NewRecorder()

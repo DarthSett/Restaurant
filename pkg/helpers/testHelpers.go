@@ -34,7 +34,7 @@ func ResetDBafterCreate(db *mysql.MysqlDB) {
 func ResetDBafterDelete(db *mysql.MysqlDB,flag int) {
 	if flag == 0{
 		db.Query("ALTER table User AUTO_INCREMENT=1")
-		db.Query("INSERT INTO User VALUES ('user1', '$2a$04$y9ExoM60HYRfNxm8N/tE3.YHVS/RhHB/6eaztdwVYhoRPspofsmk2', 'user1@gmail.com', '1', '1', '1', '1', '2019-08-09 14:12:25')")
+		db.Query("INSERT INTO User VALUES ('user1', '$2a$04$y9ExoM60HYRfNxm8N/tE3.YHVS/RhHB/6eaztdwVYhoRPspofsmk2', 'user1@gmail.com', '1', '2', '1', '1', '2019-08-09 14:12:25')")
 		db.Query("ALTER table admin AUTO_INCREMENT=1")
 		db.Query("INSERT INTO Admin VALUES ('admin1', '$2a$04$AKe7E84SCtQZCjPYpRCN6OrdMS/VnV0Qx93Os.TU8nO71Tt67ysmG', 'admin1@gmail.com', '1', '2', '1', '1', '2019-08-08 15:47:35')")
 		db.Query("ALTER table superadmin AUTO_INCREMENT=1")
