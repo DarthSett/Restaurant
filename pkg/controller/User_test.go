@@ -42,7 +42,7 @@ func TestCreateUser(t *testing.T) {
 	}
 	login[2] = Login{
 		Email: "admin1@gmail.com",
-		Pass:  "gutthix",
+		Pass:  "zamorak",
 	}
 	userdata[0] = create{
 		Name:  "user2",
@@ -94,7 +94,7 @@ func TestCreateUser(t *testing.T) {
 
 	var request *http.Request
 	for i,_ :=range data {
-
+		println("i: ",i)
 		if i < 5 {
 			b, _ := json.Marshal(data[i].login)
 			request,_ = http.NewRequest(http.MethodPost, "/superadmin/login",bytes.NewReader(b))
@@ -228,7 +228,7 @@ func TestUpdateUser (t *testing.T) {
 	}
 	login[1] = Login{
 		Email: "admin1@gmail.com",
-		Pass:  "gutthix",
+		Pass:  "zamorak",
 	}
 	userdata := make([]upd, 9)
 	userdata[0] = upd{Id: "1", Flag: "0", Update: "user1"}
