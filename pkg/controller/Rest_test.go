@@ -97,7 +97,7 @@ func TestRest(t *testing.T) {
 	t.Run("It returns 200 on updating a rest", func(t *testing.T) {
 		restcreate := rest{
 			Id:"1",
-			Update1:"user2@gmail.com",
+			Update1:"user1@gmail.com",
 			Update2:"",
 			Flag:"2",
 		}
@@ -119,7 +119,7 @@ func TestRest(t *testing.T) {
 		token := response.Header().Get("token")
 		restcreate := rest{
 			Id:"1",
-			Update1:"user2@gmail.com",
+			Update1:"user1@gmail.com",
 			Update2:"",
 			Flag:"2",
 		}

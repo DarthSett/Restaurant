@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	db := mysql.NewMySqlDB("127.0.0.1","root","Zamorak1","3306","Restaurant")
+	db := mysql.NewMySqlDB("restaurant_database_1","hcs","hcs123","3306","restaurants")
 	defer db.Close()
 	s := server.NewServer(db)
-	s.Start(":3000")
+	s.Start(":4000")
 }

@@ -2,9 +2,172 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5c68017-4e63-4bc7-9d16-c251d9e34bf6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/#innodb_temp/temp_1.ibt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/#innodb_temp/temp_10.ibt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/#innodb_temp/temp_2.ibt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/#innodb_temp/temp_3.ibt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/#innodb_temp/temp_4.ibt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/#innodb_temp/temp_5.ibt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/#innodb_temp/temp_6.ibt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/#innodb_temp/temp_7.ibt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/#innodb_temp/temp_8.ibt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/#innodb_temp/temp_9.ibt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/auto.cnf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/binlog.000001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/binlog.000002" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/binlog.000003" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/binlog.000004" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/binlog.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/ca-key.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/ca.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/client-cert.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/client-key.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/ib_buffer_pool" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/ib_logfile0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/ib_logfile1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/ibdata1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/ibtmp1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/mysql.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/mysql/general_log.CSM" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/mysql/general_log.CSV" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/mysql/general_log_201.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/mysql/slow_log.CSM" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/mysql/slow_log.CSV" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/mysql/slow_log_202.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/accounts_138.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/cond_instances_77.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/data_lock_waits_154.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/data_locks_153.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_errors_su_132.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_errors_su_133.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_errors_su_134.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_errors_su_135.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_errors_su_136.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_stages_cu_104.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_stages_hi_105.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_stages_hi_106.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_stages_su_107.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_stages_su_108.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_stages_su_109.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_stages_su_110.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_stages_su_111.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_statement_112.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_statement_113.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_statement_114.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_statement_115.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_statement_116.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_statement_117.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_statement_118.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_statement_119.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_statement_120.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_statement_121.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_statement_122.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_statement_123.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_transacti_124.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_transacti_125.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_transacti_126.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_transacti_127.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_transacti_128.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_transacti_129.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_transacti_130.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_transacti_131.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_waits_cur_78.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_waits_his_79.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_waits_his_80.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_waits_sum_81.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_waits_sum_82.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_waits_sum_83.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_waits_sum_84.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_waits_sum_85.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/events_waits_sum_86.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/file_instances_87.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/file_summary_by__88.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/file_summary_by__89.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/global_status_172.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/global_variables_175.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/host_cache_90.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/hosts_139.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/keyring_keys_145.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/log_status_165.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/memory_summary_b_147.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/memory_summary_b_148.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/memory_summary_b_149.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/memory_summary_b_150.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/memory_summary_g_146.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/metadata_locks_152.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/mutex_instances_91.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/objects_summary__92.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/performance_time_93.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/persisted_variab_178.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/prepared_stateme_166.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/replication_appl_158.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/replication_appl_159.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/replication_appl_160.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/replication_appl_161.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/replication_appl_163.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/replication_appl_164.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/replication_conn_155.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/replication_conn_157.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/replication_grou_156.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/replication_grou_162.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/rwlock_instances_94.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/session_account__144.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/session_connect__143.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/session_status_173.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/session_variable_176.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/setup_actors_95.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/setup_consumers_96.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/setup_instrument_97.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/setup_objects_98.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/setup_threads_99.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/socket_instances_140.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/socket_summary_b_141.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/socket_summary_b_142.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/status_by_accoun_168.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/status_by_host_169.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/status_by_thread_170.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/status_by_user_171.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/table_handles_151.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/table_io_waits_s_100.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/table_io_waits_s_101.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/table_lock_waits_102.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/threads_103.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/user_defined_fun_179.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/user_variables_b_167.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/users_137.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/variables_by_thr_174.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/performance_schema/variables_info_177.sdi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/private_key.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/public_key.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/restaurants/Admin.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/restaurants/DeletedTokens.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/restaurants/Dish.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/restaurants/Rest.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/restaurants/SuperAdmin.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/restaurants/User.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/restaurants/schema_migrations.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/server-cert.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/server-key.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/sys/sys_config.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/undo_001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mysql-data/db/undo_002" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DB/dumps/1_data_load.up.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/dumps (1)/Restaurant_Admin.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/dumps (1)/Restaurant_Dish.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/dumps (1)/Restaurant_Rest.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/dumps (1)/Restaurant_SuperAdmin.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/dumps (1)/Restaurant_User.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/dumps (1)/Restaurant_routines.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/controller/Rest_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/Rest_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/helpers/testHelpers.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/helpers/testHelpers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/database/mysql/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/database/mysql/mysql.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,7 +176,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="75" />
+    <option name="myElementSize" value="244" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -46,8 +209,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1OilxvGtRZclsDoR02LPSO1uhl0" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -77,7 +244,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestDish/It_return_200_on_updating_a_dish_by_user_login in github.com/restaurant/pkg/controller">
+  <component name="RunManager" selected="Docker.docker-compose.yaml: Compose Deployment">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="restaurant" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -85,31 +252,22 @@
       <kind value="FILE" />
       <method v="2" />
     </configuration>
-    <configuration name="TestDish/It_return_200_on_creating_a_dish_by_admin_login in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestDish/It_return_200_on_deleting_a_dish_on_admin_login in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="restaurant" />
       <working_directory value="$PROJECT_DIR$/pkg/controller" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/restaurant/pkg/controller" />
-      <pattern value="^TestDish$/^It_return_200_on_creating_a_dish_by_admin_login$" />
+      <pattern value="^TestDish$/^It_return_200_on_deleting_a_dish_on_admin_login$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestDish/It_return_200_on_creating_a_dish_by_user_login in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestDish/It_return_200_on_deleting_a_dish_on_user_login in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="restaurant" />
       <working_directory value="$PROJECT_DIR$/pkg/controller" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/restaurant/pkg/controller" />
-      <pattern value="^TestDish$/^It_return_200_on_creating_a_dish_by_user_login$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestDish/It_return_200_on_updating_a_dish_by_admin_login in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="restaurant" />
-      <working_directory value="$PROJECT_DIR$/pkg/controller" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/restaurant/pkg/controller" />
-      <pattern value="^TestDish$/^It_return_200_on_updating_a_dish_by_admin_login$" />
+      <pattern value="^TestDish$/^It_return_200_on_deleting_a_dish_on_user_login$" />
       <method v="2" />
     </configuration>
     <configuration name="TestDish/It_return_200_on_updating_a_dish_by_user_login in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -121,15 +279,6 @@
       <pattern value="^TestDish$/^It_return_200_on_updating_a_dish_by_user_login$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestRest/It_returns_200_on_updating_a_rest_from_admin_login in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="restaurant" />
-      <working_directory value="$PROJECT_DIR$/pkg/controller" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/restaurant/pkg/controller" />
-      <pattern value="^TestRest$/^It_returns_200_on_updating_a_rest_from_admin_login$" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
       <module name="restaurant" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -138,15 +287,50 @@
       <kind value="DIRECTORY" />
       <method v="2" />
     </configuration>
+    <configuration name="go test github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="restaurant" />
+      <working_directory value="$PROJECT_DIR$/pkg/controller" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/restaurant/pkg/controller" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Go Test.go test github.com/restaurant/pkg/controller" />
+        <item itemvalue="Go Test.TestDish/It_return_200_on_deleting_a_dish_on_user_login in github.com/restaurant/pkg/controller" />
+        <item itemvalue="Go Test.TestDish/It_return_200_on_deleting_a_dish_on_admin_login in github.com/restaurant/pkg/controller" />
         <item itemvalue="Go Test.TestDish/It_return_200_on_updating_a_dish_by_user_login in github.com/restaurant/pkg/controller" />
-        <item itemvalue="Go Test.TestDish/It_return_200_on_updating_a_dish_by_admin_login in github.com/restaurant/pkg/controller" />
-        <item itemvalue="Go Test.TestDish/It_return_200_on_creating_a_dish_by_user_login in github.com/restaurant/pkg/controller" />
-        <item itemvalue="Go Test.TestDish/It_return_200_on_creating_a_dish_by_admin_login in github.com/restaurant/pkg/controller" />
-        <item itemvalue="Go Test.TestRest/It_returns_200_on_updating_a_rest_from_admin_login in github.com/restaurant/pkg/controller" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@7bc8971a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@5a30fcae" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -163,6 +347,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -190,13 +377,14 @@
     <SUITE FILE_PATH="coverage/restaurant$TestDist_in_github_com_restaurant_test.out" NAME="TestDist in github.com/restaurant/test Coverage Results" MODIFIED="1566180971682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestRest_It_returns_200_on_updating_a_rest_from_admin_login_in_github_com_restaurant_pkg_controller.out" NAME="TestRest/It_returns_200_on_updating_a_rest_from_admin_login in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566220023590" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestUpdate_in_github_com_restaurant_pkg_controller.out" NAME="TestUpdate in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566136708134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/restaurant$go_test_github_com_restaurant_pkg_controller.out" NAME="go test github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566219702426" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/restaurant$go_test_github_com_restaurant_pkg_controller.out" NAME="go test github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566373058938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestLoginAdmin_in_github_com_restaurant_pkg_controller.out" NAME="TestLoginAdmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566136673363" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestList_in_github_com_restaurant_pkg_controller.out" NAME="TestList in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566058700217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestGetsuperadmin_in_github_com_restaurant_pkg_controller.out" NAME="TestGetsuperadmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566137277294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestDish_It_return_200_on_updating_a_dish_by_user_login_in_github_com_restaurant_pkg_controller.out" NAME="TestDish/It_return_200_on_updating_a_dish_by_user_login in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566220455094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestCreate_integration_test_for_creating_user_in_github_com_restaurant_test.out" NAME="TestCreate/integration_test_for_creating_user in github.com/restaurant/test Coverage Results" MODIFIED="1565782072915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestDelsuperadmin_in_github_com_restaurant_pkg_controller.out" NAME="TestDelsuperadmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566137221567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/restaurant$TestDish_It_return_200_on_deleting_a_dish_on_admin_login_in_github_com_restaurant_pkg_controller.out" NAME="TestDish/It_return_200_on_deleting_a_dish_on_admin_login in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566220508432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$go_test_github_com_restaurant_pkg_database.out" NAME="go test github.com/restaurant/pkg/database Coverage Results" MODIFIED="1565765736226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestRest_in_github_com_restaurant_pkg_controller.out" NAME="TestRest in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566181006073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestCreate_it_returns_400_on_creating_an_admin_as_an_admin_in_github_com_restaurant_test.out" NAME="TestCreate/it_returns_400_on_creating_an_admin_as_an_admin in github.com/restaurant/test Coverage Results" MODIFIED="1565774876183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
@@ -210,6 +398,7 @@
     <SUITE FILE_PATH="coverage/restaurant$TestGet_in_github_com_restaurant_pkg_controller.out" NAME="TestGet in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566135399695" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestDish_It_return_200_on_creating_a_dish_by_user_login_in_github_com_restaurant_pkg_controller.out" NAME="TestDish/It_return_200_on_creating_a_dish_by_user_login in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566220331891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestCreateUser_in_github_com_restaurant_pkg_controller.out" NAME="TestCreateUser in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566210296421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/restaurant$TestDish_It_return_200_on_deleting_a_dish_on_user_login_in_github_com_restaurant_pkg_controller.out" NAME="TestDish/It_return_200_on_deleting_a_dish_on_user_login in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566220564836" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestCreate_it_returns_401_on_creating_a_superadmin_as_a_user_in_github_com_restaurant_test.out" NAME="TestCreate/it_returns_401_on_creating_a_superadmin_as_a_user in github.com/restaurant/test Coverage Results" MODIFIED="1565774982565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestDish_in_github_com_restaurant_pkg_controller.out" NAME="TestDish in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566181023630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/restaurant$TestGetAdmin_in_github_com_restaurant_pkg_controller.out" NAME="TestGetAdmin in github.com/restaurant/pkg/controller Coverage Results" MODIFIED="1566136687148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

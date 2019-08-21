@@ -3,9 +3,14 @@ package mysql
 import (
 	"database/sql"
 	"fmt"
+	models "github.com/restaurant/pkg/models"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/restaurant/pkg/models"
+	"github.com/golang-migrate/migrate"
+	"github.com/golang-migrate/migrate/database/mysql"
+	_ "github.com/golang-migrate/migrate/source/file"
+	"log"
 	"math"
+	"os"
 	"strconv"
 	"time"
 )
@@ -14,16 +19,47 @@ type MysqlDB struct {
 	*sql.DB
 }
 
-func NewMySqlDB(ip string, username string, password string, port string,schema string) *MysqlDB {
+func NewMySqlDB(ip string, Username string, password string, port string,schema string) *MysqlDB {
 
-	conn :=fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",username,password,ip,port,schema)
+	conn :=fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true&multiStatements=true",Username,password,ip,port,schema)
 	DB,err := sql.Open("mysql", conn )
 	if err != nil {
 		panic("Can't connect to db" + err.Error())
 	}
+	err = migrateDatabase(DB)
+	if err != nil {
+		panic("can't migrate db: " + err.Error())
+	}
 	return &MysqlDB{
 		DB,
 	}
+}
+
+func migrateDatabase(db *sql.DB) error {
+	driver, err := mysql.WithInstance(db, &mysql.Config{})
+	if err != nil {
+		return err
+	}
+
+	dir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	migration, err := migrate.NewWithDatabaseInstance(
+		fmt.Sprintf("file://%s/DB/dumps", dir),
+		"mysql",
+		driver,
+	)
+	if err != nil {
+		return err
+	}
+	err = migration.Up()
+	if err != nil && err != migrate.ErrNoChange {
+		return err
+	}
+
+	return nil
 }
 
 
@@ -35,7 +71,7 @@ func NewMySqlDB(ip string, username string, password string, port string,schema 
 
 //User Functions
 
-// CreateUser creates a user in db
+// CreateUser creates a User in db
 func (db *MysqlDB) CreateUser(u *models.User) error{
 	q := fmt.Sprintf("INSERT INTO User VALUES ('%s', '%s', '%s','%d','%d','%d','%d','%s')",u.Name,u.Pass,u.Email,u.Adder,u.AdderRole,0,1,time.Now().Format("2006-01-02 15:04:05"))
 	_,err := db.Query(q)
@@ -43,17 +79,17 @@ func (db *MysqlDB) CreateUser(u *models.User) error{
 }
 
 
-//GetUser fetches the data of a user from db
+//GetUser fetches the data of a User from db
 func(db *MysqlDB) GetUser(Email string,id int) (*models.User,error) {
 	var row *sql.Rows
 	var err error
 	if Email == "" {
-		row, err = db.Query("select * from user where id = ? and status = '1'", id)
+		row, err = db.Query("select * from User where id = ? and status = '1'", id)
 		if err != nil {
 			return &models.User{}, err
 	}
 	} else {
-		row, err = db.Query("select * from user where email = ? and status = '1'", Email)
+		row, err = db.Query("select * from User where email = ? and status = '1'", Email)
 		if err != nil {
 			return &models.User{}, err
 		}
@@ -85,7 +121,7 @@ func(db *MysqlDB) GetUser(Email string,id int) (*models.User,error) {
 }
 
 func (db *MysqlDB)GetUserRests (email string) ([]int,[]string,error) {
-	row,err := db.Query("select id,name from rest where owner = ?",email)
+	row,err := db.Query("select id,name from Rest where owner = ?",email)
 	if err != nil {
 		return []int{},[]string{},err
 	}
@@ -109,13 +145,13 @@ func (db *MysqlDB)GetUserRests (email string) ([]int,[]string,error) {
 }
 
 
-//DeleteUser deletes a user in db
+//DeleteUser deletes a User in db
 func (db *MysqlDB) DeleteUser(id int) error{
 	q := fmt.Sprintf("Delete from User where id ='%d'",id)
 	_,err := db.Query(q)
 	return err
 }
-//UpdateUser updates a user row in db. flag = 0 for name, flag = 1 for password, flag = 2 for email
+//UpdateUser updates a User row in db. flag = 0 for name, flag = 1 for password, flag = 2 for email
 func (db *MysqlDB) UpdateUser(id int,update string,flag int) error {
 	var q string
 	if flag == 0 {
@@ -131,9 +167,9 @@ func (db *MysqlDB) UpdateUser(id int,update string,flag int) error {
 
 }
 
-//UserList fetches the list of all users
+//UserList fetches the list of all Users
 func (db *MysqlDB) UserList() ([]string,[]string,[]int,error) {
-	row,err := db.Query("select name, email,id from user where status = '1'")
+	row,err := db.Query("select name, email,id from User where status = '1'")
 	var (
 		name 	string
 		email 	string
@@ -161,24 +197,24 @@ func (db *MysqlDB) UserList() ([]string,[]string,[]int,error) {
 
 //Admin Functions
 
-// CreateAdmin creates a admin in db
+// CreateAdmin creates a Admin in db
 func (db *MysqlDB) CreateAdmin(u *models.User) error{
 	q := fmt.Sprintf("INSERT INTO Admin VALUES ('%s', '%s', '%s','%d','%d','%d','%d','%v')",u.Name,u.Pass,u.Email,u.Adder,u.AdderRole,0,1,time.Now().Format("2006-01-02 15:04:05"))
 	_,err := db.Query(q)
 	return err
 }
 
-//GetAdmin fetches the data of a admin from db
+//GetAdmin fetches the data of a Admin from db
 func(db *MysqlDB) GetAdmin(Email string,id int) (*models.User,error){
 	var row *sql.Rows
 	var err error
 	if Email == "" {
-		row, err = db.Query("select * from admin where id = ? and status = '1'", id)
+		row, err = db.Query("select * from Admin where id = ? and status = '1'", id)
 		if err != nil {
 			return &models.User{}, err
 		}
 	} else {
-		row, err = db.Query("select * from admin where email = ? and status = '1'", Email)
+		row, err = db.Query("select * from Admin where email = ? and status = '1'", Email)
 		if err != nil {
 			return &models.User{}, err
 		}
@@ -212,11 +248,11 @@ func(db *MysqlDB) GetAdmin(Email string,id int) (*models.User,error){
 
 //DeleteAdmin deletes a Admin in db
 func (db *MysqlDB) DeleteAdmin(id int) error{
-	q := fmt.Sprintf("Delete from admin where id ='%d'",id)
+	q := fmt.Sprintf("Delete from Admin where id ='%d'",id)
 	_,err := db.Query(q)
 	return err
 }
-//UpdateAdmin updates an admin row in db. flag =0 for name, flag = 1 for password, flag = 2 for email
+//UpdateAdmin updates an Admin row in db. flag =0 for name, flag = 1 for password, flag = 2 for email
 func (db *MysqlDB) UpdateAdmin(id int,update string,flag int) error {
 	var q string
 	if flag == 0 {
@@ -238,7 +274,7 @@ func (db *MysqlDB) UpdateAdmin(id int,update string,flag int) error {
 
 // CreateSuperAdmin creates a SuperAdmin in db
 func (db *MysqlDB) CreateSuperAdmin(u *models.User) error{
-	q := fmt.Sprintf("INSERT INTO superadmin VALUES ('%s', '%s', '%s','%d','%d','%d','%d','%v')",u.Name,u.Pass,u.Email,u.Adder,u.AdderRole,0,1,time.Now().Format("2006-01-02 15:04:05"))
+	q := fmt.Sprintf("INSERT INTO SuperAdmin VALUES ('%s', '%s', '%s','%d','%d','%d','%d','%v')",u.Name,u.Pass,u.Email,u.Adder,u.AdderRole,0,1,time.Now().Format("2006-01-02 15:04:05"))
 	_,err := db.Query(q)
 	return err
 }
@@ -249,13 +285,13 @@ func(db *MysqlDB) GetSuperAdmin(Email string,id int) (*models.User,error){
 	var err error
 	if Email == "" {
 		println("@@@")
-		row, err = db.Query("select * from superadmin where id = ? and status = '1'", id)
+		row, err = db.Query("select * from SuperAdmin where id = ? and status = '1'", id)
 		if err != nil {
 			return &models.User{}, err
 		}
 	} else {
 		println("!!!")
-		row, err = db.Query("select * from superadmin where email = ? and status = '1'", Email)
+		row, err = db.Query("select * from SuperAdmin where email = ? and status = '1'", Email)
 		if err != nil {
 			return &models.User{}, err
 		}
@@ -290,7 +326,7 @@ func(db *MysqlDB) GetSuperAdmin(Email string,id int) (*models.User,error){
 
 //DeleteSuperAdmin deletes a SuperAdmin in db
 func (db *MysqlDB) DeleteSuperAdmin(id int) error{
-	q := fmt.Sprintf("delete from superadmin where id ='%d'",id)
+	q := fmt.Sprintf("delete from SuperAdmin where id ='%d'",id)
 	_,err:=db.Query(q)
 	return err
 }
@@ -299,7 +335,7 @@ func (db *MysqlDB) DeleteSuperAdmin(id int) error{
 
 //Dish Functions
 
-// CreateDish creates a dish in db
+// CreateDish creates a Dish in db
 func (db *MysqlDB) CreateDish(d *models.Dish) error{
 	q := fmt.Sprintf("INSERT INTO Dish VALUES ('%s', '%d', '%d','%d','%d','%d','%d','%s')",d.Name,d.Price,d.Rid,d.Adder,d.AdderRole,0,1,time.Now().Format("2006-01-02 15:04:05"))
 	_,err := db.Query(q)
@@ -332,14 +368,14 @@ func (db *MysqlDB) CreateDish(d *models.Dish) error{
 //}
 
 
-//UpdateDish updates the dish. flag = 0 for updating name, 1 for updating price
+//UpdateDish updates the Dish. flag = 0 for updating name, 1 for updating price
 func(db *MysqlDB) UpdateDish(id int, update string, flag int) error {
 	var q string
 	if flag == 0 {
-		q = fmt.Sprintf("update dish set Name = '%s' where id = '%d'",update,id)
+		q = fmt.Sprintf("update Dish set Name = '%s' where id = '%d'",update,id)
 	} else if flag == 1 {
 		price,_ := strconv.Atoi(update)
-		q = fmt.Sprintf("update dish set Price = '%d' where id = '%d'",price,id)
+		q = fmt.Sprintf("update Dish set Price = '%d' where id = '%d'",price,id)
 	} else {
 		return fmt.Errorf("enter a valid flag")
 	}
@@ -347,9 +383,9 @@ func(db *MysqlDB) UpdateDish(id int, update string, flag int) error {
 	return err
 }
 
-//DeleteDish deletes a dish in a db
+//DeleteDish deletes a Dish in a db
 func(db *MysqlDB) DeleteDish(id int) error{
-	 q := fmt.Sprintf("update dish set status = '0' where id = '%d'",id)
+	 q := fmt.Sprintf("update Dish set status = '0' where id = '%d'",id)
 	_,err := db.Query(q)
 	return err
 }
@@ -358,14 +394,14 @@ func(db *MysqlDB) DeleteDish(id int) error{
 
 //Restaurant Functions
 
-//CreateRestaurant creates a restaurant in db
+//CreateRestaurant creates a Restaurant in db
 func (db *MysqlDB) CreateRestaurant(r *models.Restaurant) error{
 	q := fmt.Sprintf("INSERT INTO Rest VALUES ('%s', '%s', '%s', '%s','%d','%d','%d','1','%s')",r.Name,r.Lat,r.Long,r.Owner,r.AddedBy,r.AdderRole,0,time.Now().Format("2006-01-02 15:04:05"))
 	_,err := db.Query(q)
 	return err
 }
 
-// UpdateRest updates the restaurant. flag = 0 for updating name, 1 for updating location, 2 for updating owner.
+// UpdateRest updates the Restaurant. flag = 0 for updating name, 1 for updating location, 2 for updating owner.
 // keep update2 empty in case of flag=0/2
 func(db *MysqlDB) UpdateRest(id int, update1 string, update2 string, flag int) error {
 
@@ -384,7 +420,7 @@ func(db *MysqlDB) UpdateRest(id int, update1 string, update2 string, flag int) e
 	return err
 }
 
-//GetRestaurant fetches the data of a restaurant from db
+//GetRestaurant fetches the data of a Restaurant from db
 func(db *MysqlDB) GetRestaurant(Id int) (*models.Restaurant,error){
 	row,err := db.Query("select * from Rest where id = ? and status = '1'",Id)
 	if err != nil{
@@ -415,7 +451,7 @@ func(db *MysqlDB) GetRestaurant(Id int) (*models.Restaurant,error){
 	return models.NewRestaurant(name,lat,long,owner,adder,id,adderRole), nil
 }
 
-//DeleteRestaurant deletes a restaurant in db
+//DeleteRestaurant deletes a Restaurant in db
 func (db *MysqlDB) DeleteRestaurant(id int,adder int,rank int) error{
 	var q string
 	if rank == 2 {
@@ -432,7 +468,7 @@ func (db *MysqlDB) DeleteRestaurant(id int,adder int,rank int) error{
 		return err
 	}
 	if affected == 0 {
-		return fmt.Errorf("error deleting restaurant")
+		return fmt.Errorf("error deleting Restaurant")
 	}
 	return err
 }
@@ -469,9 +505,9 @@ func (db *MysqlDB) GetMenu (rid int) ([]int,[]string,[]int,error) {
 }
 
 
-//getbyDistance fetches the list of all restaurants in a certain radius from a point
+//getbyDistance fetches the list of all Restaurants in a certain radius from a point
 func (db *MysqlDB) GetbyDistance (Lat float64, Long float64,dist float64) ([]string,[]int){
-	q := fmt.Sprintf("SELECT name,id,latitude,longitude FROM rest where status = '1'")
+	q := fmt.Sprintf("SELECT name,id,latitude,longitude FROM Rest where status = '1'")
 	rows,err := db.Query(q)
 	if err != nil {
 		panic(err)
@@ -502,10 +538,10 @@ func (db *MysqlDB) GetbyDistance (Lat float64, Long float64,dist float64) ([]str
 }
 
 
-//RestList fetches the List of all restaurants
+//RestList fetches the List of all Restaurants
 func (db *MysqlDB) RestList() ([]int,[]string,error){
 
-	row,err := db.Query("SELECT id,name from rest where status = '1'")
+	row,err := db.Query("SELECT id,name from Rest where status = '1'")
 	if err != nil {
 		return []int{},[]string{},err
 	}
