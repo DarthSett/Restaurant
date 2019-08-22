@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	db := mysql.NewMySqlDB("restaurant_database_1","hcs","hcs123","3306","restaurants")
+	db := mysql.NewMySqlDB("restaurant_database_1","hcs123","hcs12345","3306","restaurants")
 	defer db.Close()
 	s := server.NewServer(db)
 	s.Start(":4000")
