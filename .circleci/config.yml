@@ -29,3 +29,9 @@ workflows:
     jobs:
       - build
       - printer
+      - deploy:
+          requires:
+           - build
+          filters:
+            branches:
+              only: master
