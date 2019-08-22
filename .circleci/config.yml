@@ -1,0 +1,22 @@
+version : 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.12
+        environment:
+          -GO111MODULE: "ON"
+    working_directory: ~/go/src/github.com/restaurant
+    steps:
+      - checkout
+      - run: go mod download
+      - run: go test ./pkg/database
+  printer:
+        machine: true
+        steps:
+          - run: echo "Running from Printer"
+workflows:
+  version: 2
+  one_and_two:
+    jobs:
+      - build
+      - printer
