@@ -8,7 +8,7 @@ jobs:
     working_directory: ~/go/src/github.com/restaurant
     steps:
       - checkout
-      - run: go mod download
+      - run: go mod verify
       - run: go test ./pkg/database
   printer:
         machine: true
