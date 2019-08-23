@@ -12,12 +12,17 @@ jobs:
       - run: go test ./pkg/database
   deploy:
     docker:
-     - image: buildpack-deps:trusty
+      - image: buildpack-deps:trustyheroku
     steps:
       - checkout
       - run:
+          #git push https://heroku:a8e29700-1981-4a5c-b60f-71e0f74b70c2@git.heroku.com/guarded-sierra-83575.git master
           name: Deploy Master to Heroku
-          command: git push https://heroku:a8e29700-1981-4a5c-b60f-71e0f74b70c2@git.heroku.com/guarded-sierra-83575.git master
+          command:|
+          docker login --username=sourav@hotcocoasoftware.com --password=a8e29700-1981-4a5c-b60f-71e0f74b70c2 registry.heroku.com
+          heroku container:push web
+          heroku container:release web
+
 
   printer:
         machine: true
