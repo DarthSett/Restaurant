@@ -14,7 +14,7 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: docker login --username=_ --password=f897b601-bde5-48ac-bed9-23c38dbcf1eb registry.heroku.com
+      - run: docker login --username=_ --password="f897b601-bde5-48ac-bed9-23c38dbcf1eb" registry.heroku.com
       - run: curl https://cli-assets.heroku.com/install.sh | sh
       - run: heroku container:push web --app guarded-sierra-83575
       - run: heroku container:release web --app guarded-sierra-83575
