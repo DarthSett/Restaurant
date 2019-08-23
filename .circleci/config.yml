@@ -17,10 +17,10 @@ jobs:
         #docker build .
         #docker push registry.heroku.com/guarded-sierra-83575
         #git push https://heroku:a8e29700-1981-4a5c-b60f-71e0f74b70c2@git.heroku.com/guarded-sierra-83575.git master
-      - run: curl https://cli-assets.heroku.com/install.sh | sh
+      - #run: curl https://cli-assets.heroku.com/install.sh | sh
       - run: docker login --username=sourav@hotcocoasoftware.com --password=f897b601-bde5-48ac-bed9-23c38dbcf1eb registry.heroku.com
-       #run: docker tag restaurant-server registry.heroku.com/guarded-sierra-83575/web
-       #run: docker push registry.heroku.com/guarded-sierra-83575/web
+      - run: docker tag restaurant-server registry.heroku.com/guarded-sierra-83575/web
+      - run: docker push registry.heroku.com/guarded-sierra-83575/web
       - run: heroku container:push web --app guarded-sierra-83575
       - run: heroku container:release web --app guarded-sierra-83575
 

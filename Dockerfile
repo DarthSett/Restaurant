@@ -8,4 +8,4 @@ RUN go mod download
 RUN go mod verify
 RUN go build -v -o ./bin/server ./cmd/
 EXPOSE 4000
-ENTRYPOINT ["CMD"]
+ENTRYPOINT ["/app/bin/server"]
