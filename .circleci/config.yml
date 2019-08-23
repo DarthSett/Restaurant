@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run: curl https://cli-assets.heroku.com/install.sh | sh
-      - run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+      - run: docker login --username=_ --password=$HEROKU_API_SHORT_TERM registry.heroku.com
       - run: heroku container:push web --app guarded-sierra-83575
       - run: heroku container:release web --app guarded-sierra-83575
 
