@@ -11,8 +11,7 @@ jobs:
       - run: go mod verify
       - run: go test ./pkg/database
   deploy:
-    docker:
-      - image: buildpack-deps:trustyheroku
+    machine: true
     steps:
       - checkout
       - run:
@@ -20,7 +19,7 @@ jobs:
           name: Deploy Master to Heroku
           command: |
             docker login --username=sourav@hotcocoasoftware.com --password=a8e29700-1981-4a5c-b60f-71e0f74b70c2 registry.heroku.com
-            heroku container:push web
+            docker push registry.heroku.com/<app>
             heroku container:release web
 
 
