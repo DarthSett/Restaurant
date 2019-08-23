@@ -25,7 +25,7 @@ func (r *Router) Router() *gin.Engine {
 
 	defaultRouter.GET("/", func(c *gin.Context){
 		c.JSON(http.StatusOK, gin.H{
-			"msg" : "Hello World",
+			"msg" : "Hello World !!",
 		})
 	})
 
