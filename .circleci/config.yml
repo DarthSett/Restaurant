@@ -21,8 +21,8 @@ jobs:
       - run: docker login --username=sourav@hotcocoasoftware.com --password=f897b601-bde5-48ac-bed9-23c38dbcf1eb registry.heroku.com
       - run: docker tag restaurant-server registry.heroku.com/guarded-sierra-83575/web
       - run: docker push registry.heroku.com/guarded-sierra-83575/web
-      - run: heroku container:push web --app guarded-sierra-83575
-      - run: heroku container:release web --app guarded-sierra-83575
+      # run: heroku container:push web --app guarded-sierra-83575
+      # run: heroku container:release web --app guarded-sierra-83575
 
   printer:
         machine: true
