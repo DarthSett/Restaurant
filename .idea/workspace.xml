@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5c68017-4e63-4bc7-9d16-c251d9e34bf6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.circleci/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/server/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/router.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -82,12 +84,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestDatabase in github.com/restaurant/pkg/database">
+  <component name="RunManager" selected="Go Build.go build github.com/restaurant/cmd">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="restaurant" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build github.com/restaurant/cmd" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="restaurant" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/cmd/main.go" />
+      <package value="github.com/restaurant/cmd" />
       <method v="2" />
     </configuration>
     <configuration name="TestDatabase in github.com/restaurant/pkg/database" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -97,15 +107,6 @@
       <kind value="PACKAGE" />
       <package value="github.com/restaurant/pkg/database" />
       <pattern value="^TestDatabase$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestDish/It_return_200_on_deleting_a_dish_on_admin_login in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="restaurant" />
-      <working_directory value="$PROJECT_DIR$/pkg/controller" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/restaurant/pkg/controller" />
-      <pattern value="^TestDish$/^It_return_200_on_deleting_a_dish_on_admin_login$" />
       <method v="2" />
     </configuration>
     <configuration name="TestDish/It_return_200_on_deleting_a_dish_on_user_login in github.com/restaurant/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -143,11 +144,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build github.com/restaurant/cmd" />
         <item itemvalue="Go Test.TestDatabase in github.com/restaurant/pkg/database" />
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
         <item itemvalue="Go Test.go test github.com/restaurant/pkg/controller" />
         <item itemvalue="Go Test.TestDish/It_return_200_on_deleting_a_dish_on_user_login in github.com/restaurant/pkg/controller" />
-        <item itemvalue="Go Test.TestDish/It_return_200_on_deleting_a_dish_on_admin_login in github.com/restaurant/pkg/controller" />
       </list>
     </recent_temporary>
   </component>

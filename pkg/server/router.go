@@ -5,6 +5,7 @@ import (
 	"github.com/restaurant/pkg/controller"
 	"github.com/restaurant/pkg/database"
 	"github.com/restaurant/pkg/middleware"
+	"net/http"
 )
 
 type Router struct {
@@ -21,6 +22,12 @@ func NewRouter (db database.Database) *Router {
 func (r *Router) Router() *gin.Engine {
 
 	defaultRouter := gin.Default()
+
+	defaultRouter.GET("/", func(c *gin.Context){
+		c.JSON(http.StatusOK, gin.H{
+			"msg" : "Hello World",
+		})
+	})
 
 	userController := controller.NewUserController(r)
 	adminController := controller.NewAdminController(r)
