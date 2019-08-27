@@ -242,17 +242,13 @@ func (u *UserController) UserUpdate(c *gin.Context) {
 	}
 	if rank == 2 {
 		err = u.UpdateUser(id, update, flag)
-	} else if rank == 1 {
+	} else {
 		if user.Adder == adder && user.AdderRole == rank {
 			err = u.UpdateUser(id, update, flag)
 		} else {
 			c.AbortWithError(http.StatusUnauthorized, fmt.Errorf("admin is not the adder of this user"))
 		}
 		err = u.UpdateUser(id, update, flag)
-	} else if user.Adder == adder && user.AdderRole == rank {
-		err = u.UpdateUser(id, update, flag)
-	} else {
-		c.AbortWithError(http.StatusUnauthorized, fmt.Errorf("admin is not the adder of this user"))
 	}
 	c.Writer.Write([]byte("User Updated"))
 }
