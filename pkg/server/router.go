@@ -49,14 +49,16 @@ func (r *Router) Router() *gin.Engine {
 				c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no pass sent"))
 			}
 			if input["rank"] == "" {
-			c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no pass sent"))
+			c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no rank sent"))
 			}
 			if input["rank"] == "0" {
 				user, err = r.GetUser(input["email"], 0)
 			} else if input["rank"] == "1" {
 				user, err = r.GetAdmin(input["email"], 0)
-			} else {
+			} else if input["rank"] == "2"{
 				user, err = r.GetSuperAdmin(input["email"], 0)
+			} else {
+				err = fmt.Errorf("Invalid value for rank")
 			}
 			if err != nil {
 				c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting user from db: %v", err))
