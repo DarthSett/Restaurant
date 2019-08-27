@@ -152,44 +152,44 @@ func (u *UserController) UserDel(c *gin.Context) {
 	c.Writer.Write([]byte(string(id) + " Deleted from db"))
 }
 
-func (u *UserController) UserLogin(c *gin.Context) {
-	//email := c.PostForm("email")
-	//pass := c.PostForm("pass")
-	input := make(map[string]string)
-	err := c.BindJSON(&input)
-	if err != nil {
-		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting inputs: "+err.Error()))
-	}
-
-	if input["email"] == "" {
-		c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no email sent"))
-	}
-	if input["pass"] == "" {
-		c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no pass sent"))
-	}
-
-	user, err := u.GetUser(input["email"], 0)
-	if err != nil {
-		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting user from db: %v", err))
-	}
-	println(user.Pass)
-	println(input["pass"])
-	err = bcrypt.CompareHashAndPassword([]byte(user.Pass), []byte(input["pass"]))
-	if err != nil {
-		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error matching passwords: "+err.Error()))
-	} else {
-		t, err := generateToken(user)
-		println(t)
-		if err != nil {
-			c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error creating tokens: "+err.Error()))
-		}
-		c.Writer.Header().Set("token", t)
-		println(t)
-		c.Writer.Write([]byte("User logged in. Token generated"))
-
-	}
-
-}
+//func (u *UserController) UserLogin(c *gin.Context) {
+//	//email := c.PostForm("email")
+//	//pass := c.PostForm("pass")
+//	input := make(map[string]string)
+//	err := c.BindJSON(&input)
+//	if err != nil {
+//		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting inputs: "+err.Error()))
+//	}
+//
+//	if input["email"] == "" {
+//		c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no email sent"))
+//	}
+//	if input["pass"] == "" {
+//		c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no pass sent"))
+//	}
+//
+//	user, err := u.GetUser(input["email"], 0)
+//	if err != nil {
+//		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting user from db: %v", err))
+//	}
+//	println(user.Pass)
+//	println(input["pass"])
+//	err = bcrypt.CompareHashAndPassword([]byte(user.Pass), []byte(input["pass"]))
+//	if err != nil {
+//		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error matching passwords: "+err.Error()))
+//	} else {
+//		t, err := GenerateToken(user)
+//		println(t)
+//		if err != nil {
+//			c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error creating tokens: "+err.Error()))
+//		}
+//		c.Writer.Header().Set("token", t)
+//		println(t)
+//		c.Writer.Write([]byte("User logged in. Token generated"))
+//
+//	}
+//
+//}
 
 func (u *UserController) UserUpdate(c *gin.Context) {
 	input := make(map[string]string)

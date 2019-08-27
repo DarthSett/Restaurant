@@ -93,38 +93,38 @@ func (u *SuperAdminController) SuperAdminDel(c *gin.Context) {
 	c.Writer.Write([]byte(string(id) + " Deleted from db"))
 }
 
-func (u *SuperAdminController) SuperAdminLogin(c *gin.Context) {
-	input := make(map[string]string)
-	err := c.BindJSON(&input)
-	if err != nil {
-		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting inputs: "+err.Error()))
-	}
-
-	if input["email"] == "" {
-		c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no email sent"))
-	}
-	if input["pass"] == "" {
-		c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no pass sent"))
-	}
-
-	sa, err := u.GetSuperAdmin(input["email"], 0)
-	if err != nil {
-		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting user from db: "+err.Error()))
-	}
-	println("id: ", sa.Id)
-	println(input["pass"])
-
-	err = bcrypt.CompareHashAndPassword([]byte(sa.Pass), []byte(input["pass"]))
-	if err != nil {
-		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error matching passwords: "+err.Error()))
-	} else {
-		t, err := generateToken(sa)
-		println(t)
-		if err != nil {
-			c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error creating tokens: "+err.Error()))
-		}
-		c.Writer.Header().Set("token", t)
-		println(t)
-		c.Writer.Write([]byte("User logged in. Token generated"))
-	}
-}
+//func (u *SuperAdminController) SuperAdminLogin(c *gin.Context) {
+//	input := make(map[string]string)
+//	err := c.BindJSON(&input)
+//	if err != nil {
+//		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting inputs: "+err.Error()))
+//	}
+//
+//	if input["email"] == "" {
+//		c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no email sent"))
+//	}
+//	if input["pass"] == "" {
+//		c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no pass sent"))
+//	}
+//
+//	sa, err := u.GetSuperAdmin(input["email"], 0)
+//	if err != nil {
+//		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting user from db: "+err.Error()))
+//	}
+//	println("id: ", sa.Id)
+//	println(input["pass"])
+//
+//	err = bcrypt.CompareHashAndPassword([]byte(sa.Pass), []byte(input["pass"]))
+//	if err != nil {
+//		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error matching passwords: "+err.Error()))
+//	} else {
+//		t, err := GenerateToken(sa)
+//		println(t)
+//		if err != nil {
+//			c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error creating tokens: "+err.Error()))
+//		}
+//		c.Writer.Header().Set("token", t)
+//		println(t)
+//		c.Writer.Write([]byte("User logged in. Token generated"))
+//	}
+//}
