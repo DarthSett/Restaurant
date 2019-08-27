@@ -229,6 +229,10 @@ func (u *UserController) UserUpdate(c *gin.Context) {
 	if err != nil {
 		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("error getting id from claims: "+err.Error()))
 	}
+
+	rank,_ = strconv.Atoi(fmt.Sprintf("%v",claims["rank"]))
+	adder,_ = strconv.Atoi(fmt.Sprintf("%v",claims["id"]))
+
 	if flag == 1 {
 		upd, err := bcrypt.GenerateFromPassword([]byte(update), 5)
 		if err != nil {
@@ -244,6 +248,11 @@ func (u *UserController) UserUpdate(c *gin.Context) {
 		} else {
 			c.AbortWithError(http.StatusUnauthorized, fmt.Errorf("admin is not the adder of this user"))
 		}
+		err = u.UpdateUser(id,update,flag)
+	} else if user.Adder == adder && user.AdderRole == rank {
+		err = u.UpdateUser(id,update,flag)
+	} else {
+		c.AbortWithError(http.StatusUnauthorized,fmt.Errorf("admin is not the adder of this user"))
 	}
 	c.Writer.Write([]byte("User Updated"))
 }
