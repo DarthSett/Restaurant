@@ -10,7 +10,7 @@ import (
 
 //todo: replace panics with errors
 
-func generateToken (user *models.User) (string,error) {
+func generateToken(user *models.User) (string, error) {
 	token := jwt.New(jwt.SigningMethodHS256)
 	claims := token.Claims.(jwt.MapClaims)
 	claims["email"] = user.Email
@@ -19,13 +19,12 @@ func generateToken (user *models.User) (string,error) {
 	claims["id"] = user.Id
 	claims["exp"] = time.Now().Add(30 * time.Minute).Unix()
 
-	t,err := token.SignedString([]byte("SecretKey"))
+	t, err := token.SignedString([]byte("SecretKey"))
 
-	return t,err
+	return t, err
 }
 
-func GetTokenClaims (t string) (jwt.MapClaims, error) {
-
+func GetTokenClaims(t string) (jwt.MapClaims, error) {
 
 	//	var claims jwt.MapClaims
 	token, err := jwt.Parse(t, func(token *jwt.Token) (interface{}, error) {
@@ -34,7 +33,7 @@ func GetTokenClaims (t string) (jwt.MapClaims, error) {
 		}
 		return []byte("SecretKey"), nil
 	})
-	return token.Claims.(jwt.MapClaims),err
+	return token.Claims.(jwt.MapClaims), err
 }
 
 func (u *UserController) Logout(c *gin.Context) {
@@ -45,6 +44,3 @@ func (u *UserController) Logout(c *gin.Context) {
 	}
 	c.Writer.Write([]byte("User Logged Out"))
 }
-
-
-

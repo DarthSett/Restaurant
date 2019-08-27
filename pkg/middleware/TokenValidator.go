@@ -11,30 +11,30 @@ type MidController struct {
 	database.Database
 }
 
-func NewMidController (db database.Database) *MidController {
+func NewMidController(db database.Database) *MidController {
 	return &MidController{db}
 }
 
-func (u *MidController)TokenValidator(c *gin.Context) {
+func (u *MidController) TokenValidator(c *gin.Context) {
 	t := c.GetHeader("token")
 	if t == "" {
 		panic("no token sent")
 	}
-	flag,err := u.Checktoken(t)
+	flag, err := u.Checktoken(t)
 	if err != nil {
 		panic("error checking with deletedtokens: " + err.Error())
-		c.AbortWithError(http.StatusUnauthorized,err)
+		c.AbortWithError(http.StatusUnauthorized, err)
 	}
 	if flag == false {
 		panic("token already logged out")
 	}
-	claims,err := controller.GetTokenClaims(t)
+	claims, err := controller.GetTokenClaims(t)
 	if err != nil {
 		panic("token not valid: " + err.Error())
-		c.AbortWithError(http.StatusUnauthorized,err)
+		c.AbortWithError(http.StatusUnauthorized, err)
 	}
 	println(claims["id"])
-	c.Set("claims",claims)
+	c.Set("claims", claims)
 
 	//	claims := token.Claims.(jwt.MapClaims)
 

@@ -12,20 +12,19 @@ type Router struct {
 	database.Database
 }
 
-func NewRouter (db database.Database) *Router {
+func NewRouter(db database.Database) *Router {
 	return &Router{
 		db,
 	}
 }
 
-
 func (r *Router) Router() *gin.Engine {
 
 	defaultRouter := gin.Default()
 
-	defaultRouter.GET("/", func(c *gin.Context){
+	defaultRouter.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"msg" : "Hello World !!",
+			"msg": "Hello World !!",
 		})
 	})
 
@@ -35,52 +34,43 @@ func (r *Router) Router() *gin.Engine {
 	restcontroller := controller.NewRestController(r)
 	midController := middleware.NewMidController(r)
 
-
-
 	userGroup := defaultRouter.Group("user")
-	userGroup.POST("/create",midController.TokenValidator,middleware.AdminRankAuthenticator, userController.Usermake)
-	userGroup.GET ("/get",midController.TokenValidator,middleware.AdminRankAuthenticator,userController.Userget)
-	userGroup.DELETE("/del",midController.TokenValidator,middleware.SuperAdminRankAuthenticator, userController.UserDel)
-	userGroup.POST("/login",userController.UserLogin)
-	userGroup.GET("/list",midController.TokenValidator,middleware.AdminRankAuthenticator,userController.ListUser)
-	userGroup.PUT("/update",midController.TokenValidator,middleware.AdminRankAuthenticator,userController.UserUpdate)
+	userGroup.POST("/create", midController.TokenValidator, middleware.AdminRankAuthenticator, userController.Usermake)
+	userGroup.GET("/get", midController.TokenValidator, middleware.AdminRankAuthenticator, userController.Userget)
+	userGroup.DELETE("/del", midController.TokenValidator, middleware.SuperAdminRankAuthenticator, userController.UserDel)
+	userGroup.POST("/login", userController.UserLogin)
+	userGroup.GET("/list", midController.TokenValidator, middleware.AdminRankAuthenticator, userController.ListUser)
+	userGroup.PUT("/update", midController.TokenValidator, middleware.AdminRankAuthenticator, userController.UserUpdate)
 	//userGroup.GET("/rest",midController.TokenValidator,middleware.AdminRankAuthenticator,userController.UserRest)
 
-
-
-
-
 	adminGroup := defaultRouter.Group("admin")
-	adminGroup.POST("/create",midController.TokenValidator,middleware.SuperAdminRankAuthenticator, adminController.Adminmake)
-	adminGroup.GET ("/get",midController.TokenValidator,middleware.AdminRankAuthenticator,adminController.Adminget)
-	adminGroup.DELETE("/del",midController.TokenValidator,middleware.SuperAdminRankAuthenticator, adminController.AdminDel)
-	adminGroup.POST("/login",adminController.AdminLogin)
-	adminGroup.PUT("/update",midController.TokenValidator,middleware.SuperAdminRankAuthenticator,adminController.AdminUpdate)
+	adminGroup.POST("/create", midController.TokenValidator, middleware.SuperAdminRankAuthenticator, adminController.Adminmake)
+	adminGroup.GET("/get", midController.TokenValidator, middleware.AdminRankAuthenticator, adminController.Adminget)
+	adminGroup.DELETE("/del", midController.TokenValidator, middleware.SuperAdminRankAuthenticator, adminController.AdminDel)
+	adminGroup.POST("/login", adminController.AdminLogin)
+	adminGroup.PUT("/update", midController.TokenValidator, middleware.SuperAdminRankAuthenticator, adminController.AdminUpdate)
 
 	superadminGroup := defaultRouter.Group("superadmin")
-	superadminGroup.POST("/create",midController.TokenValidator,middleware.SuperAdminRankAuthenticator, superadminController.SuperAdminmake)
-	superadminGroup.GET ("/get",midController.TokenValidator,middleware.SuperAdminRankAuthenticator, superadminController.SuperAdminget)
-	superadminGroup.DELETE("/del",midController.TokenValidator,middleware.SuperAdminRankAuthenticator, superadminController.SuperAdminDel)
-	superadminGroup.POST("/login",superadminController.SuperAdminLogin)
-
+	superadminGroup.POST("/create", midController.TokenValidator, middleware.SuperAdminRankAuthenticator, superadminController.SuperAdminmake)
+	superadminGroup.GET("/get", midController.TokenValidator, middleware.SuperAdminRankAuthenticator, superadminController.SuperAdminget)
+	superadminGroup.DELETE("/del", midController.TokenValidator, middleware.SuperAdminRankAuthenticator, superadminController.SuperAdminDel)
+	superadminGroup.POST("/login", superadminController.SuperAdminLogin)
 
 	restGroup := defaultRouter.Group("rest")
-	restGroup.POST("/create",midController.TokenValidator,middleware.AdminRankAuthenticator,restcontroller.RestMake)
-	restGroup.GET("/get",midController.TokenValidator,restcontroller.Restget)
-	restGroup.DELETE("/del",midController.TokenValidator,middleware.AdminRankAuthenticator,restcontroller.RestDel)
-	restGroup.PUT("/update",midController.TokenValidator,middleware.AdminRankAuthenticator,restcontroller.RestUpdate)
-	restGroup.GET("/menu",midController.TokenValidator,restcontroller.MenuGet)
-	restGroup.GET("/dist",restcontroller.Getbydist)
-	restGroup.GET("/list",midController.TokenValidator,restcontroller.ListRest)
+	restGroup.POST("/create", midController.TokenValidator, middleware.AdminRankAuthenticator, restcontroller.RestMake)
+	restGroup.GET("/get", midController.TokenValidator, restcontroller.Restget)
+	restGroup.DELETE("/del", midController.TokenValidator, middleware.AdminRankAuthenticator, restcontroller.RestDel)
+	restGroup.PUT("/update", midController.TokenValidator, middleware.AdminRankAuthenticator, restcontroller.RestUpdate)
+	restGroup.GET("/menu", midController.TokenValidator, restcontroller.MenuGet)
+	restGroup.GET("/dist", restcontroller.Getbydist)
+	restGroup.GET("/list", midController.TokenValidator, restcontroller.ListRest)
 
 	dishGroup := restGroup.Group("/dish")
-	dishGroup.POST("/create",midController.TokenValidator,restcontroller.AddDish)
-	dishGroup.DELETE("/del",midController.TokenValidator,restcontroller.DelDish)
-	dishGroup.PUT("/update",midController.TokenValidator,restcontroller.UpdDish)
+	dishGroup.POST("/create", midController.TokenValidator, restcontroller.AddDish)
+	dishGroup.DELETE("/del", midController.TokenValidator, restcontroller.DelDish)
+	dishGroup.PUT("/update", midController.TokenValidator, restcontroller.UpdDish)
 
-
-	defaultRouter.GET("/logout",midController.TokenValidator,userController.Logout)
-
+	defaultRouter.GET("/logout", midController.TokenValidator, userController.Logout)
 
 	return defaultRouter
 }

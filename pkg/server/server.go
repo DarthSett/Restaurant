@@ -5,7 +5,7 @@ import (
 )
 
 type Server struct {
-	db database.Database
+	db     database.Database
 	router *Router
 }
 

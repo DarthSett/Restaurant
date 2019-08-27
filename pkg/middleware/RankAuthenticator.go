@@ -14,17 +14,16 @@ func AdminRankAuthenticator(c *gin.Context) {
 		panic("no token sent")
 	}
 
-	clms,_ := c.Get("claims")
+	clms, _ := c.Get("claims")
 	claims := clms.(jwt.MapClaims)
-	rank,_ := strconv.Atoi(fmt.Sprintf("%v",claims["rank"]))
+	rank, _ := strconv.Atoi(fmt.Sprintf("%v", claims["rank"]))
 	//	claims := token.Claims.(jwt.MapClaims)
 
-	if rank == 1 || rank == 2{
+	if rank == 1 || rank == 2 {
 		c.Next()
 	} else {
-		c.AbortWithError(http.StatusUnauthorized,fmt.Errorf("user not an admin"))
+		c.AbortWithError(http.StatusUnauthorized, fmt.Errorf("user not an admin"))
 	}
-
 
 }
 
@@ -34,9 +33,9 @@ func SuperAdminRankAuthenticator(c *gin.Context) {
 		panic("no token sent")
 	}
 
-	clms,_ := c.Get("claims")
+	clms, _ := c.Get("claims")
 	claims := clms.(jwt.MapClaims)
-	rank,_ := strconv.Atoi(fmt.Sprintf("%v",claims["rank"]))
+	rank, _ := strconv.Atoi(fmt.Sprintf("%v", claims["rank"]))
 
 	if rank == 2 {
 		c.Next()
