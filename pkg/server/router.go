@@ -21,7 +21,6 @@ func NewRouter(db database.Database) *Router {
 	}
 }
 
-
 func (r *Router) Router() *gin.Engine {
 
 	defaultRouter := gin.Default()
@@ -33,52 +32,52 @@ func (r *Router) Router() *gin.Engine {
 	})
 
 	defaultRouter.POST("/login", func(c *gin.Context) {
-			//email := c.PostForm("email")
-			//pass := c.PostForm("pass")
-			var user *models.User
-			input := make(map[string]string)
-			err := c.BindJSON(&input)
-			if err != nil {
-				c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting inputs: "+err.Error()))
-			}
+		//email := c.PostForm("email")
+		//pass := c.PostForm("pass")
+		var user *models.User
+		input := make(map[string]string)
+		err := c.BindJSON(&input)
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting inputs: "+err.Error()))
+		}
 
-			if input["email"] == "" {
-				c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no email sent"))
-			}
-			if input["pass"] == "" {
-				c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no pass sent"))
-			}
-			if input["rank"] == "" {
+		if input["email"] == "" {
+			c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no email sent"))
+		}
+		if input["pass"] == "" {
+			c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no pass sent"))
+		}
+		if input["rank"] == "" {
 			c.AbortWithError(http.StatusBadRequest, fmt.Errorf("no rank sent"))
-			}
-			if input["rank"] == "0" {
-				user, err = r.GetUser(input["email"], 0)
-			} else if input["rank"] == "1" {
-				user, err = r.GetAdmin(input["email"], 0)
-			} else if input["rank"] == "2"{
-				user, err = r.GetSuperAdmin(input["email"], 0)
-			} else {
-				err = fmt.Errorf("Invalid value for rank")
-			}
+		}
+		if input["rank"] == "0" {
+			user, err = r.GetUser(input["email"], 0)
+		} else if input["rank"] == "1" {
+			user, err = r.GetAdmin(input["email"], 0)
+		} else if input["rank"] == "2" {
+			user, err = r.GetSuperAdmin(input["email"], 0)
+		} else {
+			err = fmt.Errorf("Invalid value for rank")
+		}
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting user from db: %v", err))
+		}
+		println(user.Pass)
+		println(input["pass"])
+		err = bcrypt.CompareHashAndPassword([]byte(user.Pass), []byte(input["pass"]))
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error matching passwords: "+err.Error()))
+		} else {
+			t, err := controller.GenerateToken(user)
+			println(t)
 			if err != nil {
-				c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error getting user from db: %v", err))
+				c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error creating tokens: "+err.Error()))
 			}
-			println(user.Pass)
-			println(input["pass"])
-			err = bcrypt.CompareHashAndPassword([]byte(user.Pass), []byte(input["pass"]))
-			if err != nil {
-				c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error matching passwords: "+err.Error()))
-			} else {
-				t, err := controller.GenerateToken(user)
-				println(t)
-				if err != nil {
-					c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("Error creating tokens: "+err.Error()))
-				}
-				c.Writer.Header().Set("token", t)
-				println(t)
-				c.Writer.Write([]byte("User logged in. Token generated"))
+			c.Writer.Header().Set("token", t)
+			println(t)
+			c.Writer.Write([]byte("User logged in. Token generated"))
 
-			}
+		}
 	})
 
 	userController := controller.NewUserController(r)
