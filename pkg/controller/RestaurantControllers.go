@@ -171,14 +171,8 @@ func (u *RestController) RestUpdate(c *gin.Context) {
 	clms, _ := c.Get("claims")
 	claims := clms.(jwt.MapClaims)
 
-	rank, err := strconv.Atoi(fmt.Sprintf("%v", claims["rank"]))
-	if err != nil {
-		panic("Error getting rank of admin: " + err.Error())
-	}
+	rank, _ := strconv.Atoi(fmt.Sprintf("%v", claims["rank"]))
 	user, _ := strconv.Atoi(fmt.Sprintf("%v", claims["id"]))
-	if err != nil {
-		panic("Error getting id of admin: " + err.Error())
-	}
 
 	rest, err := u.GetRestaurant(rid)
 	if err != nil {
@@ -192,12 +186,10 @@ func (u *RestController) RestUpdate(c *gin.Context) {
 	if rank == 2 {
 		err = u.UpdateRest(rid, input["update1"], input["update2"], flag)
 
-	} else if rank == 1 {
-		if (RestAdder == user && RestAdderRole == rank) || (RestOwner == claims["email"]) {
-			err = u.UpdateRest(rid, input["update1"], input["update2"], flag)
-		} else {
-			panic("Admin is not the adder or owner of the restaurant")
-		}
+	} else if (RestAdder == user && RestAdderRole == rank) || (RestOwner == claims["email"]) {
+		err = u.UpdateRest(rid, input["update1"], input["update2"], flag)
+	} else {
+		panic("Admin is not the adder or owner of the restaurant")
 	}
 
 	if err != nil {
@@ -326,7 +318,6 @@ func (u *RestController) UpdDish(c *gin.Context) {
 	if err != nil {
 		panic("Error getting inputs: " + err.Error())
 	}
-
 	if input["id"] == "" {
 		panic("no id sent")
 	}
@@ -354,14 +345,8 @@ func (u *RestController) UpdDish(c *gin.Context) {
 	if err != nil {
 		panic("Error getting flag: " + err.Error())
 	}
-	rank, err := strconv.Atoi(fmt.Sprintf("%v", claims["rank"]))
-	if err != nil {
-		panic("Error getting rank from claims: " + err.Error())
-	}
+	rank, _ := strconv.Atoi(fmt.Sprintf("%v", claims["rank"]))
 	user, _ := strconv.Atoi(fmt.Sprintf("%v", claims["id"]))
-	if err != nil {
-		panic("Error getting id of admin: " + err.Error())
-	}
 	rest, err := u.GetRestaurant(rid)
 	if err != nil {
 		panic("Error getting rest from db: " + err.Error())
@@ -372,21 +357,12 @@ func (u *RestController) UpdDish(c *gin.Context) {
 
 	if rank == 2 {
 		err = u.UpdateDish(id, input["update"], flag)
-
-	} else if rank == 1 {
-		if (adder == user && adderRole == rank) || owner == claims["email"] {
-			err = u.UpdateDish(id, input["update"], flag)
-		} else {
-			panic("Admin is not the adder or owner of the restaurant")
-
-		}
-	} else if rank == 0 {
-		if owner != claims["email"] {
-			panic("user is not the owner of the restaurant")
-		} else {
-			err = u.UpdateDish(id, input["update"], flag)
-
-		}
+	} else if adder == user && adderRole == rank {
+		err = u.UpdateDish(id, input["update"], flag)
+	} else if owner == claims["email"] {
+		err = u.UpdateDish(id, input["update"], flag)
+	} else {
+		panic("user is not the owner or adder of the restaurant")
 	}
 	if err != nil {
 		panic("error deleting dish from db: " + err.Error())
