@@ -75,7 +75,7 @@ func TestCreateAdmin(t *testing.T) {
 	data[5] = testData{login[1], admindata[0], 401}
 
 	var request *http.Request
-	for i, _ := range data {
+	for i := range data {
 		println(i)
 
 		if i < 5 {
@@ -132,7 +132,7 @@ func TestGetAdmin(t *testing.T) {
 	data[0] = testData{g: admindata[0], expected: 200}
 	data[1] = testData{g: admindata[1], expected: 400}
 	data[2] = testData{g: admindata[2], expected: 500}
-	for i, _ := range data {
+	for i := range data {
 		admin, _ := json.Marshal(data[i].g)
 		request, _ = http.NewRequest(http.MethodGet, "/admin/get", bytes.NewReader(admin))
 		request.Header.Set("token", token)
@@ -180,7 +180,7 @@ func TestLoginAdmin(t *testing.T) {
 	data[2] = testData{login[2], http.StatusBadRequest}
 	data[3] = testData{login[3], http.StatusInternalServerError}
 	data[4] = testData{login[4], http.StatusInternalServerError}
-	for i, _ := range data {
+	for i := range data {
 		admin, _ := json.Marshal(data[i].l)
 		request, _ := http.NewRequest(http.MethodPost, "/admin/login", bytes.NewReader(admin))
 		request.Header.Set("Content-Type", "application/json")
