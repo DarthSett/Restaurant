@@ -95,7 +95,7 @@ func (u *UserController) Userget(c *gin.Context) {
 		RID      int
 		RestName string
 	}, len(rids))
-	for i, _ := range rids {
+	for i := range rids {
 		o[i].RID = rids[i]
 		o[i].RestName = names[i]
 	}
@@ -260,7 +260,7 @@ func (u *UserController) ListUser(c *gin.Context) {
 		Id    int
 	}, len(name))
 	//o := make(map[string]string)
-	for i, _ := range name {
+	for i := range name {
 		t[i].Name = name[i]
 		t[i].Email = email[i]
 		t[i].Id = id[i]

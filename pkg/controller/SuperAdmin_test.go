@@ -69,7 +69,7 @@ func TestCreatesuperadmin(t *testing.T) {
 	data[4] = testData{login, superadmindata[4], 500}
 
 	var request *http.Request
-	for i, _ := range data {
+	for i := range data {
 		println(i)
 
 		if i < 5 {
@@ -126,7 +126,7 @@ func TestGetsuperadmin(t *testing.T) {
 	data[0] = testData{g: superadmindata[0], expected: 200}
 	data[1] = testData{g: superadmindata[1], expected: 400}
 	data[2] = testData{g: superadmindata[2], expected: 500}
-	for i, _ := range data {
+	for i := range data {
 		superadmin, _ := json.Marshal(data[i].g)
 		request, _ = http.NewRequest(http.MethodGet, "/superadmin/get", bytes.NewReader(superadmin))
 		request.Header.Set("token", token)
@@ -174,7 +174,7 @@ func TestLoginsuperadmin(t *testing.T) {
 	data[2] = testData{login[2], http.StatusBadRequest}
 	data[3] = testData{login[3], http.StatusInternalServerError}
 	data[4] = testData{login[4], http.StatusInternalServerError}
-	for i, _ := range data {
+	for i := range data {
 		superadmin, _ := json.Marshal(data[i].l)
 		request, _ := http.NewRequest(http.MethodPost, "/superadmin/login", bytes.NewReader(superadmin))
 		request.Header.Set("Content-Type", "application/json")

@@ -93,7 +93,7 @@ func TestCreateUser(t *testing.T) {
 	data[14] = testData{login[2], userdata[4], 500}
 
 	var request *http.Request
-	for i, _ := range data {
+	for i := range data {
 		println("i: ", i)
 		if i < 5 {
 			b, _ := json.Marshal(data[i].login)
@@ -152,7 +152,7 @@ func TestGetUser(t *testing.T) {
 	data[0] = testData{g: userdata[0], expected: 200}
 	data[1] = testData{g: userdata[1], expected: 400}
 	data[2] = testData{g: userdata[2], expected: 500}
-	for i, _ := range data {
+	for i := range data {
 		user, _ := json.Marshal(data[i].g)
 		request, _ = http.NewRequest(http.MethodGet, "/user/get", bytes.NewReader(user))
 		request.Header.Set("token", token)
@@ -200,7 +200,7 @@ func TestLoginUser(t *testing.T) {
 	data[2] = testData{login[2], http.StatusBadRequest}
 	data[3] = testData{login[3], http.StatusInternalServerError}
 	data[4] = testData{login[4], http.StatusInternalServerError}
-	for i, _ := range data {
+	for i := range data {
 		user, _ := json.Marshal(data[i].l)
 		request, _ := http.NewRequest(http.MethodPost, "/user/login", bytes.NewReader(user))
 		request.Header.Set("Content-Type", "application/json")

@@ -93,7 +93,7 @@ func (u *RestController) Restget(c *gin.Context) {
 		Name  string
 		Price int
 	}, len(ids))
-	for i, _ := range ids {
+	for i := range ids {
 		menu[i].Id = ids[i]
 		menu[i].Name = names[i]
 		menu[i].Price = prices[i]
@@ -413,7 +413,7 @@ func (u *RestController) MenuGet(c *gin.Context) {
 		Name  string
 		Price int
 	}, len(ids))
-	for i, _ := range ids {
+	for i := range ids {
 		o[i].Id = ids[i]
 		o[i].Name = names[i]
 		o[i].Price = prices[i]
@@ -446,7 +446,7 @@ func (u *RestController) Getbydist(c *gin.Context) {
 		Id   int
 		Name string
 	}, len(id))
-	for i, _ := range id {
+	for i := range id {
 		o[i].Name = names[i]
 		o[i].Id = id[i]
 	}
@@ -464,7 +464,7 @@ func (u *RestController) ListRest(c *gin.Context) {
 		Id   int
 		Name string
 	}, len(id))
-	for i, _ := range id {
+	for i := range id {
 		o[i].Id = id[i]
 		o[i].Name = name[i]
 	}
