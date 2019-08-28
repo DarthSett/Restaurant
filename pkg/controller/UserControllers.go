@@ -229,10 +229,6 @@ func (u *UserController) UserUpdate(c *gin.Context) {
 	if err != nil {
 		c.AbortWithError(http.StatusInternalServerError, fmt.Errorf("error getting id from claims: "+err.Error()))
 	}
-
-	rank, _ = strconv.Atoi(fmt.Sprintf("%v", claims["rank"]))
-	adder, _ = strconv.Atoi(fmt.Sprintf("%v", claims["id"]))
-
 	if flag == 1 {
 		upd, err := bcrypt.GenerateFromPassword([]byte(update), 5)
 		if err != nil {
