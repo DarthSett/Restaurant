@@ -1,9 +1,9 @@
 package models
 
 type Booking struct {
-	CID  	int 		`json:"cid" binding:"required"`
-	RID 	int 		`json:"rid" binding:"required"`
-	TID 	int 		`json:"tid" binding:"required"`
-	Id    	int 		`json:"id"`
+	ID  	int 		`json:"cid" binding:"required"`
+	CID 	int 		`json:"rid" binding:"required"`
+	RID 	int 		`json:"tid" binding:"required"`
+	TID   	int 		`json:"id"`
 	BTime	int64
 }
