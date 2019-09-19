@@ -9,9 +9,9 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: restaurants
-      MYSQL_USER: hcs
-      MYSQL_PASSWORD: hcs123
+      MYSQL_DATABASE: Restaurant
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
     networks:
       - internal
   server:

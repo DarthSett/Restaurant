@@ -9,6 +9,7 @@ type Dish struct {
 	AdderRole int
 }
 
+
 func NewDish(name string, price int, rid int, id int, adder int, adderRole int) *Dish {
 	return &Dish{
 		Name:      name,
