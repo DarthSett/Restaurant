@@ -17,7 +17,7 @@ jobs:
       - run: curl https://cli-assets.heroku.com/install.sh | sh
       - run: pwd
       - run: ls -l
-      - run: cd ./Res_Man_Microservice
+      - run: cd Res_Man_MicroService
       - run: docker login --username=sourav@hotcocoasoftware.com --password=$HEROKU_API_KEY registry.heroku.com
       - run: heroku container:push web --app guarded-sierra-83575
       - run: heroku container:release web --app guarded-sierra-83575
