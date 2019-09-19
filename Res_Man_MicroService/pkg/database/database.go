@@ -28,5 +28,6 @@ type Database interface {
 	DeleteDish(id int) error
 	LogoutUser(token string) error
 	Checktoken(token string) (bool, error)
+	GetTables() (map[int]int, error)
 	//GetDish				(id int)														(*models.Dish,error)
 }

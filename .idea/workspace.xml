@@ -2,17 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5c68017-4e63-4bc7-9d16-c251d9e34bf6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Reservation_MicroService/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Reservation_MicroService/pkg/database/database.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Reservation_MicroService/pkg/database/mysql/mysql.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Reservation_MicroService/pkg/server/router.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Reservation_MicroService/pkg/server/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/models/Booking.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Res_Man_MicroService/pkg/helpers/sendSignal.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Res_Man_MicroService/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.circleci/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/models/Customer.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/models/Customer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res_Man_MicroService/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/Res_Man_MicroService/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res_Man_MicroService/pkg/controller/RestaurantControllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/Res_Man_MicroService/pkg/controller/RestaurantControllers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res_Man_MicroService/pkg/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/Res_Man_MicroService/pkg/database/database.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res_Man_MicroService/pkg/database/mysql/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/Res_Man_MicroService/pkg/database/mysql/mysql.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/models/restaurant.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/models/restaurant.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

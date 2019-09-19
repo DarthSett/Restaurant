@@ -5,6 +5,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	database2 "github.com/restaurant/Res_Man_MicroService/pkg/database"
+	"github.com/restaurant/Res_Man_MicroService/pkg/helpers"
 	"github.com/restaurant/pkg/models"
 	"strconv"
 )
@@ -43,6 +44,9 @@ func (u *RestController) RestMake(c *gin.Context) {
 	if input["owner"] == "" {
 		panic("no owner sent")
 	}
+	if input["table"] == "" {
+		panic("no table sent")
+	}
 
 	clms, _ := c.Get("claims")
 	claims := clms.(jwt.MapClaims)
@@ -54,12 +58,21 @@ func (u *RestController) RestMake(c *gin.Context) {
 	if err != nil {
 		panic("Error getting rank of admin: " + err.Error())
 	}
+	table, _ := strconv.Atoi(fmt.Sprintf("%v", claims["table"]))
+	if err != nil {
+		panic("Error getting table: " + err.Error())
+	}
 	owner := input["owner"]
-	rest := models.AddRestaurant(input["name"], input["lat"], input["long"], owner, adder, rank)
+	rest := models.AddRestaurant(input["name"], input["lat"], input["long"], owner, adder, rank,table)
 	err = u.CreateRestaurant(rest)
 	if err != nil {
 		panic("Error while saving Restaurant to db: " + err.Error())
 	}
+	tables,err := u.GetTables()
+	if err != nil {
+		panic(err)
+	}
+	helpers.SendSignal(tables)
 	c.Writer.Write([]byte("Restaurant Saved"))
 
 }
@@ -192,8 +205,16 @@ func (u *RestController) RestUpdate(c *gin.Context) {
 		panic("Admin is not the adder or owner of the restaurant")
 	}
 
+
 	if err != nil {
 		panic("Error while updating in db: " + err.Error())
+	}
+	if flag == 3 {
+		table,err := u.GetTables()
+		if err != nil {
+			panic(err)
+		}
+		helpers.SendSignal(table)
 	}
 	c.Writer.Write([]byte("Rest Updated"))
 }

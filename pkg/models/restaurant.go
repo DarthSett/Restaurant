@@ -8,9 +8,10 @@ type Restaurant struct {
 	AddedBy   int
 	ID        int
 	AdderRole int
+	Tables	  int
 }
 
-func NewRestaurant(name string, lat string, long string, owner string, adder int, id int, adderrole int) *Restaurant {
+func NewRestaurant(name string, lat string, long string, owner string, adder int, id int, adderrole int, tables int) *Restaurant {
 	return &Restaurant{
 		Name:      name,
 		Lat:       lat,
@@ -19,12 +20,13 @@ func NewRestaurant(name string, lat string, long string, owner string, adder int
 		AddedBy:   adder,
 		ID:        id,
 		AdderRole: adderrole,
+		Tables:	   tables,
 	}
 }
 
-func AddRestaurant(name string, lat string, long string, owner string, adder int, adderrole int) *Restaurant {
+func AddRestaurant(name string, lat string, long string, owner string, adder int, adderrole int, tables int) *Restaurant {
 
-	return NewRestaurant(name, lat, long, owner, adder, 0, adderrole)
+	return NewRestaurant(name, lat, long, owner, adder, 0, adderrole, tables)
 }
 
 func (r *Restaurant) GetOwner() string {

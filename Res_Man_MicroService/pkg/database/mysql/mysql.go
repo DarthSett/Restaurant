@@ -378,7 +378,7 @@ func (db *MysqlDB) DeleteDish(id int) error {
 
 //CreateRestaurant creates a Restaurant in db
 func (db *MysqlDB) CreateRestaurant(r *models.Restaurant) error {
-	q := fmt.Sprintf("INSERT INTO Rest VALUES ('%s', '%s', '%s', '%s','%d','%d','%d','1','%s')", r.Name, r.Lat, r.Long, r.Owner, r.AddedBy, r.AdderRole, 0, time.Now().Format("2006-01-02 15:04:05"))
+	q := fmt.Sprintf("INSERT INTO Rest VALUES ('%s', '%s', '%s', '%s','%d','%d','%d','%d','1','%s')", r.Name, r.Lat, r.Long, r.Owner, r.AddedBy, r.AdderRole,r.Tables, 0, time.Now().Format("2006-01-02 15:04:05"))
 	_, err := db.Query(q)
 	return err
 }
@@ -397,6 +397,8 @@ func (db *MysqlDB) UpdateRest(id int, update1 string, update2 string, flag int) 
 		q = fmt.Sprintf("update Rest set latitude = '%s', longitude = '%s' where id = '%d'", lat, long, id)
 	} else if flag == 2 {
 		q = fmt.Sprintf("update Rest set Owner = '%s' where id = '%d'", update1, id)
+	} else if flag == 3 {
+		q = fmt.Sprintf("update Rest set table = '%s' where id = '%d'", update1, id)
 	}
 	_, err := db.Query(q)
 	return err
@@ -419,9 +421,10 @@ func (db *MysqlDB) GetRestaurant(Id int) (*models.Restaurant, error) {
 		id        int
 		status    int
 		created   string
+		table 	  int
 	)
 	for row.Next() {
-		err := row.Scan(&name, &lat, &long, &owner, &adder, &adderRole, &id, &status, &created)
+		err := row.Scan(&name, &lat, &long, &owner, &adder, &adderRole,&table, &id, &status, &created)
 		if err != nil {
 			return &models.Restaurant{}, err
 		}
@@ -430,7 +433,7 @@ func (db *MysqlDB) GetRestaurant(Id int) (*models.Restaurant, error) {
 		return &models.Restaurant{}, fmt.Errorf("no such record in database")
 	}
 
-	return models.NewRestaurant(name, lat, long, owner, adder, id, adderRole), nil
+	return models.NewRestaurant(name, lat, long, owner, adder, id, adderRole,table), nil
 }
 
 //DeleteRestaurant deletes a Restaurant in db
@@ -555,4 +558,21 @@ func (db *MysqlDB) Checktoken(token string) (bool, error) {
 		flag = false
 	}
 	return flag, err
+}
+
+func (db *MysqlDB) GetTables() (map[int]int, error) {
+	row, err := db.Query("select id,tables from rest")
+	if err != nil {
+		return nil, err
+	}
+	m := make(map[int]int)
+	var rid,table int
+	for row.Next() {
+		err = row.Scan(&rid,&table)
+		if err != nil {
+			 return m,err
+		}
+		m[rid] = table
+	}
+	return m, err
 }
