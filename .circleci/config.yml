@@ -18,6 +18,8 @@ jobs:
       - run: pwd
       - run: ls -l
       - run: cd Res_Man_MicroService
+      - run: pwd
+      - run: ls -l
       - run: docker login --username=sourav@hotcocoasoftware.com --password=$HEROKU_API_KEY registry.heroku.com
       - run: heroku container:push web --app guarded-sierra-83575
       - run: heroku container:release web --app guarded-sierra-83575
