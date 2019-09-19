@@ -5,9 +5,6 @@ type Customer struct {
 	Email 	string 		`json:"email" binding:"required"`
 	Pass  	string 		`json:"pass" binding:"required"`
 	Id    	int 		`json:"id"`
-	BRest 	int64
-	Btable	int64
-	BTime	int64
 }
 
 type Credentials struct {
@@ -15,14 +12,14 @@ type Credentials struct {
 	Pass  string 	`json:"pass" binding:"required"`
 }
 
-func NewCust(name string, email string, pass string, id int, rid int64, tid int64, btime int64) *Customer {
-	return &Customer{
-		Name:   	name,
-		Email:  	email,
-		Pass:   	pass,
-		BRest:  	rid,
-		Btable: 	tid,
-		BTime:		btime,
-		Id:     	id,
-	}
-}
+//func NewCust(name string, email string, pass string, id int, rid int64, tid int64, btime int64) *Customer {
+//	return &Customer{
+//		Name:   	name,
+//		Email:  	email,
+//		Pass:   	pass,
+//		BRest:  	rid,
+//		Btable: 	tid,
+//		BTime:		btime,
+//		Id:     	id,
+//	}
+//}
