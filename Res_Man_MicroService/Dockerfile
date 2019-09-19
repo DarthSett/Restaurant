@@ -1,7 +1,7 @@
 FROM golang
 MAINTAINER sourav241196@gmail.com
 WORKDIR /app
-COPY .. .
+COPY . .
 
 ENV GO111MODULE=on
 RUN go mod download
