@@ -11,6 +11,8 @@ import (
 	"time"
 )
 
+var Table map[int]int
+
 func main() {
 	port := os.Getenv("PORT")
 	db := mysql.NewMySqlDB("localhost", "root", "password", "3306", "reservation")
